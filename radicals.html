@@ -676,9 +676,10 @@ const rawWords = [
     hanzi: "几",
     pinyin: "jī",
     plain: "ji",
-    ru: "столик",
+    ru: "несколько",
     picture: "▱",
-    group: "ключи"
+    group: "ключи",
+    audioText: "机"
   },
   {
     hanzi: "巾",
@@ -702,7 +703,8 @@ const rawWords = [
     plain: "jiong",
     ru: "граница, ограждение",
     picture: "▢",
-    group: "ключи"
+    group: "ключи",
+    audioText: "扃"
   },
   {
     hanzi: "山",
@@ -718,11 +720,11 @@ const rawWords = [
     plain: "wang",
     ru: "хромой",
     picture: "⟂",
-    group: "ключи"
+    group: "ключи",
+    audioText: "汪"
   },
   {
     hanzi: "心/忄",
-    say: "心",
     pinyin: "xīn",
     plain: "xin",
     ru: "сердце",
@@ -745,7 +747,8 @@ const rawWords = [
     picture: "┯",
     group: "ключи с ассоциацией",
     examples: "幹 (gàn — ствол, стержень)",
-    assoc: "Прямая перекладина — как основа, опора или щит."
+    assoc: "Прямая перекладина — как основа, опора или щит.",
+    audioText: "甘"
   },
   {
     hanzi: "幺",
@@ -755,7 +758,8 @@ const rawWords = [
     picture: "〰",
     group: "ключи с ассоциацией",
     examples: "幻 (huàn — иллюзия)",
-    assoc: "Скрученная ниточка, тонкая и маленькая."
+    assoc: "Скрученная ниточка, тонкая и маленькая.",
+    audioText: "腰"
   },
   {
     hanzi: "弓",
@@ -775,7 +779,8 @@ const rawWords = [
     picture: "≋",
     group: "ключи с ассоциацией",
     examples: "形 (xíng — форма)",
-    assoc: "Три штриха, как пряди или декоративные линии."
+    assoc: "Три штриха, как пряди или декоративные линии.",
+    audioText: "山"
   },
   {
     hanzi: "千",
@@ -842,7 +847,8 @@ const rawWords = [
     plain: "tou",
     ru: "верхушка, голова",
     picture: "⌃",
-    group: "ключи"
+    group: "ключи",
+    audioText: "头"
   },
   {
     hanzi: "言",
@@ -912,7 +918,6 @@ const rawWords = [
   },
   {
     hanzi: "手/扌",
-    say: "手",
     pinyin: "shǒu",
     plain: "shou",
     ru: "рука",
@@ -921,7 +926,6 @@ const rawWords = [
   },
   {
     hanzi: "水/氵",
-    say: "水",
     pinyin: "shuǐ",
     plain: "shui",
     ru: "вода",
@@ -970,7 +974,8 @@ const rawWords = [
     picture: "↘",
     group: "ключи с ассоциацией",
     examples: "延 (yán — продлевать), 廷 (tíng — двор)",
-    assoc: "Вытянутый шаг, длинный след."
+    assoc: "Вытянутый шаг, длинный след.",
+    audioText: "引"
   },
   {
     hanzi: "廾",
@@ -980,7 +985,8 @@ const rawWords = [
     picture: "🙌",
     group: "ключи с ассоциацией",
     examples: "弄 (nòng — делать)",
-    assoc: "Сложенные вместе руки."
+    assoc: "Сложенные вместе руки.",
+    audioText: "拱"
   },
   {
     hanzi: "百",
@@ -1023,7 +1029,8 @@ const rawWords = [
     plain: "che",
     ru: "росток",
     picture: "🌱",
-    group: "ключи"
+    group: "ключи",
+    audioText: "彻"
   },
   {
     hanzi: "二",
@@ -1047,7 +1054,8 @@ const rawWords = [
     plain: "mi",
     ru: "крышка",
     picture: "▔",
-    group: "ключи"
+    group: "ключи",
+    audioText: "密"
   },
   {
     hanzi: "木",
@@ -1097,7 +1105,8 @@ const rawWords = [
     picture: "↗",
     group: "ключи с ассоциацией",
     examples: "式 (shì — форма, стиль)",
-    assoc: "Стрела с веревкой для охоты."
+    assoc: "Стрела с веревкой для охоты.",
+    audioText: "意"
   },
   {
     hanzi: "彐",
@@ -1107,7 +1116,8 @@ const rawWords = [
     picture: "彐",
     group: "ключи с ассоциацией",
     examples: "彐 (jì — голова свиньи), 当 (dāng — быть, служить)",
-    assoc: "Округлая форма мордочки с линиями."
+    assoc: "Округлая форма мордочки с линиями.",
+    audioText: "记"
   },
   {
     hanzi: "彳",
@@ -1115,7 +1125,8 @@ const rawWords = [
     plain: "chi",
     ru: "шаг левой ногой",
     picture: "👣",
-    group: "ключи с ассоциацией"
+    group: "ключи с ассоциацией",
+    audioText: "赤"
   },
   {
     hanzi: "四",
@@ -1142,7 +1153,7 @@ const words = rawWords
     ...word,
     rawIndex: index,
     sortBlock: word.group === "числа" ? 1 : 0,
-    audio: ttsUrls(spokenText(word)),
+    audio: ttsUrls(audioText(word)),
     tone: toneFromPinyin(word.pinyin),
     id: `${word.hanzi}-${word.ru}-${index}`
   }))
@@ -1222,14 +1233,14 @@ if ("speechSynthesis" in window) {
 function speak(input) {
   const word = typeof input === "object" ? input : words.find(item => item.hanzi === input);
   if (word && isIOS()) {
-    speakWithBrowserVoice(spokenText(word));
+    speakWithBrowserVoice(audioText(word));
     return;
   }
   if (word && word.audio) {
     playAudioSources(word, 0);
     return;
   }
-  speakWithBrowserVoice(spokenText(input));
+  speakWithBrowserVoice(audioText(input));
 }
 
 function playAudioSources(word, index) {
@@ -1239,7 +1250,7 @@ function playAudioSources(word, index) {
   }
   const sources = Array.isArray(word.audio) ? word.audio : [word.audio];
   if (!sources[index]) {
-    speakWithBrowserVoice(spokenText(word));
+    speakWithBrowserVoice(audioText(word));
     return;
   }
   activeAudio = new Audio(sources[index]);
@@ -1263,9 +1274,14 @@ function speakWithBrowserVoice(text) {
   window.speechSynthesis.speak(utterance);
 }
 
-function spokenText(input) {
-  if (typeof input === "object" && input) return input.say || String(input.hanzi).split("/")[0];
+function linkText(input) {
+  if (typeof input === "object" && input) return String(input.hanzi).split("/")[0];
   return String(input).split("/")[0];
+}
+
+function audioText(input) {
+  if (typeof input === "object" && input) return input.audioText || linkText(input);
+  return linkText(input);
 }
 
 function detailMarkup(word) {
@@ -1277,7 +1293,7 @@ function detailText(word) {
 }
 
 function haohanUrl(word) {
-  return `https://haohan.io/ru/character/${encodeURIComponent(spokenText(word))}/`;
+  return `https://haohan.io/ru/character/${encodeURIComponent(linkText(word))}/`;
 }
 
 function toneFromPinyin(pinyin) {
