@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Китайские слова · тренажер</title>
+<style>
+:root {
+  --ink: #000000;
+  --paper: #FFFFFF;
+  --accent: #FF0000;
+  --ink-90: #1A1A1A;
+  --ink-60: #666666;
+  --ink-30: #BFBFBF;
+  --ink-12: #E0E0E0;
+  --ink-04: #F5F5F5;
+  --ok: #007A33;
+  --warn: #B27300;
+  --font-display: Inter, "Helvetica Neue", Arial, sans-serif;
+  --font-text: Inter, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "JetBrains Mono", Menlo, monospace;
+  --bd-1: 1px solid var(--ink);
+  --bd-2: 2px solid var(--ink);
+  --bd-4: 4px solid var(--ink);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-text);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+button, input { font: inherit; }
+button { color: inherit; }
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: stretch;
+  border-bottom: var(--bd-4);
+  background: var(--paper);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  padding: 16px 22px;
+  border-right: var(--bd-2);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+.nav {
+  display: flex;
+  overflow-x: auto;
+}
+.nav a, .counter {
+  display: flex;
+  align-items: center;
+  padding: 16px 18px;
+  border-right: var(--bd-1);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: var(--ink-60);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.nav a:hover, .nav a.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+.counter {
+  border-right: 0;
+  border-left: var(--bd-2);
+  color: var(--ink);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr);
+  gap: 48px;
+  padding: 56px 48px 48px;
+  border-bottom: var(--bd-2);
+  min-height: calc(100vh - 68px);
+  align-items: end;
+}
+.hero-kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: var(--ink-60);
+  margin-bottom: 18px;
+}
+h1 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 116px;
+  line-height: 0.92;
+  max-width: 980px;
+}
+.hero-copy {
+  max-width: 620px;
+  margin-top: 24px;
+  font-size: 18px;
+}
+.hero-panel {
+  border-top: var(--bd-4);
+  padding-top: 18px;
+}
+.big-number {
+  font-family: var(--font-display);
+  font-size: 112px;
+  font-weight: 900;
+  line-height: 0.85;
+}
+.meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: var(--ink-60);
+}
+.progress-shell {
+  margin-top: 22px;
+  border: var(--bd-2);
+  height: 22px;
+  background: var(--ink-04);
+}
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  background: var(--accent);
+  transition: width 180ms linear;
+}
+
+.section {
+  padding: 56px 48px 72px;
+  border-bottom: var(--bd-2);
+}
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: var(--bd-2);
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 18px;
+  border: var(--bd-2);
+  background: var(--paper);
+  font-weight: 800;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn:hover, .btn.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+.btn.primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+.btn.primary:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.btn.icon {
+  width: 44px;
+  padding: 0;
+  font-size: 20px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.search {
+  width: min(100%, 360px);
+  padding: 11px 14px;
+  border: var(--bd-2);
+  outline: 0;
+}
+.search:focus {
+  outline: 4px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.word-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 0;
+  border-top: var(--bd-2);
+  border-left: var(--bd-2);
+}
+.word-card {
+  min-height: 232px;
+  display: grid;
+  grid-template-rows: 96px 1fr auto;
+  border-right: var(--bd-2);
+  border-bottom: var(--bd-2);
+  background: var(--paper);
+}
+.picture {
+  display: grid;
+  place-items: center;
+  min-height: 96px;
+  background:
+    linear-gradient(90deg, transparent 49%, var(--ink-12) 50%, transparent 51%),
+    linear-gradient(0deg, transparent 49%, var(--ink-12) 50%, transparent 51%),
+    var(--ink-04);
+  border-bottom: var(--bd-1);
+  font-size: 48px;
+}
+.word-body {
+  padding: 14px 14px 10px;
+}
+.hanzi {
+  font-family: "PingFang SC", "Noto Sans CJK SC", var(--font-display);
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1;
+}
+.pinyin {
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent);
+}
+.tone {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 2px 8px;
+  border: var(--bd-1);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink);
+}
+.ru {
+  margin-top: 8px;
+  font-size: 15px;
+  font-weight: 700;
+}
+.word-actions {
+  display: grid;
+  grid-template-columns: 44px 52px 1fr;
+  border-top: var(--bd-1);
+}
+.word-actions .btn {
+  border: 0;
+  border-right: var(--bd-1);
+  min-height: 42px;
+}
+.word-actions .btn:last-child { border-right: 0; }
+.card-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 800;
+  border-right: 0;
+  background: var(--ink-04);
+}
+.card-progress.done {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.trainer {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.88fr) minmax(320px, 1.12fr);
+  border: var(--bd-2);
+}
+.trainer-side {
+  border-right: var(--bd-2);
+  padding: 24px;
+  display: grid;
+  align-content: start;
+  gap: 20px;
+}
+.mode-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+.scoreboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: var(--bd-2);
+}
+.score-item {
+  padding: 14px;
+  border-right: var(--bd-1);
+}
+.score-item:last-child { border-right: 0; }
+.score-value {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 1;
+}
+.stage {
+  min-height: 520px;
+  padding: 28px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 22px;
+}
+.prompt {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 22px;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: var(--bd-2);
+}
+.prompt .picture {
+  min-height: 120px;
+  border: var(--bd-2);
+  font-size: 56px;
+}
+.prompt-word {
+  font-family: "PingFang SC", "Noto Sans CJK SC", var(--font-display);
+  font-size: 96px;
+  font-weight: 900;
+  line-height: 0.95;
+}
+.prompt-sub {
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--ink-60);
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+.options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  align-content: start;
+}
+.option {
+  min-height: 76px;
+  padding: 14px;
+  border: var(--bd-2);
+  background: var(--paper);
+  text-align: left;
+  font-weight: 800;
+  cursor: pointer;
+}
+.option .option-main {
+  display: block;
+}
+.option .option-sub {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink-60);
+}
+.option:hover { background: var(--ink-04); }
+.option.correct {
+  background: #E0F2E9;
+  border-color: var(--ok);
+}
+.option.wrong {
+  background: #FFE5E5;
+  border-color: var(--accent);
+}
+.answer-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: start;
+}
+.answer-input {
+  width: 100%;
+  min-height: 54px;
+  padding: 13px 16px;
+  border: var(--bd-2);
+  outline: 0;
+  font-size: 20px;
+}
+.answer-input:focus {
+  outline: 4px solid var(--accent);
+  outline-offset: -2px;
+}
+.feedback {
+  min-height: 52px;
+  padding: 13px 16px;
+  border-left: 8px solid var(--ink);
+  background: var(--ink-04);
+  font-weight: 800;
+}
+.feedback.good {
+  border-left-color: var(--ok);
+  background: #E0F2E9;
+}
+.feedback.bad {
+  border-left-color: var(--accent);
+  background: #FFE5E5;
+}
+.stage-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.write-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(72px, 1fr));
+  gap: 0;
+  border-top: var(--bd-2);
+  border-left: var(--bd-2);
+}
+.write-cell {
+  aspect-ratio: 1;
+  border-right: var(--bd-2);
+  border-bottom: var(--bd-2);
+  background:
+    linear-gradient(90deg, transparent 49.4%, var(--ink-30) 50%, transparent 50.6%),
+    linear-gradient(0deg, transparent 49.4%, var(--ink-30) 50%, transparent 50.6%),
+    linear-gradient(45deg, transparent 49.5%, var(--ink-12) 50%, transparent 50.5%),
+    linear-gradient(-45deg, transparent 49.5%, var(--ink-12) 50%, transparent 50.5%),
+    var(--paper);
+  display: grid;
+  place-items: center;
+  font-family: "PingFang SC", "Noto Sans CJK SC", var(--font-display);
+  font-size: 52px;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.14);
+}
+
+.list-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: var(--bd-2);
+}
+.list-table th,
+.list-table td {
+  padding: 12px 14px;
+  border-bottom: var(--bd-1);
+  text-align: left;
+  vertical-align: middle;
+}
+.list-table th {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: var(--ink-60);
+  border-bottom: var(--bd-2);
+}
+.list-table tr:hover td { background: var(--ink-04); }
+.mini-hanzi {
+  font-family: "PingFang SC", "Noto Sans CJK SC", var(--font-display);
+  font-size: 28px;
+  font-weight: 900;
+}
+
+@media (max-width: 900px) {
+  .topbar { grid-template-columns: 1fr; position: static; }
+  .brand, .counter { border-left: 0; border-right: 0; border-bottom: var(--bd-1); }
+  .hero, .trainer { grid-template-columns: 1fr; }
+  .hero { min-height: 0; padding: 40px 22px; }
+  h1 { font-size: 64px; }
+  .section { padding: 40px 22px 56px; }
+  .trainer-side { border-right: 0; border-bottom: var(--bd-2); }
+  .prompt-word { font-size: 64px; }
+  .stage { min-height: 0; }
+}
+@media (max-width: 620px) {
+  .section-title { font-size: 34px; }
+  h1 { font-size: 46px; }
+  .big-number { font-size: 76px; }
+  .prompt-word { font-size: 52px; }
+  .prompt { grid-template-columns: 1fr; }
+  .options { grid-template-columns: 1fr; }
+  .answer-row { grid-template-columns: 1fr; }
+  .mode-grid { grid-template-columns: 1fr; }
+  .write-grid { grid-template-columns: repeat(2, minmax(72px, 1fr)); }
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">汉语 / Слова</div>
+  <nav class="nav" aria-label="Разделы">
+    <a class="active" href="#cards">Карточки</a>
+    <a href="#practice">Упражнения</a>
+    <a href="#list">Список</a>
+  </nav>
+  <div class="counter"><span id="masteredCount">0</span>/<span id="totalCount">0</span> выучено</div>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <div class="hero-kicker">Swiss Brutalist Vocabulary Drill · HSK Starter</div>
+      <h1>Китайские слова на сегодня</h1>
+      <p class="hero-copy">Нажимай звук, смотри на картинку, закрывай перевод глазами и проходи короткие раунды. Каждое слово считается выученным после 15 правильных ответов в упражнениях.</p>
+    </div>
+    <aside class="hero-panel">
+      <div class="meta">Всего слов</div>
+      <div class="big-number" id="heroTotal">0</div>
+      <div class="meta" id="heroMeta">тона 1-4 · китайская озвучка · Haohan</div>
+      <div class="progress-shell" aria-label="Прогресс">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="section" id="cards">
+    <div class="section-head">
+      <h2 class="section-title">Карточки</h2>
+      <div class="meta">Слушай, повторяй, доводи до 15/15</div>
+    </div>
+    <div class="toolbar">
+      <div class="filters" id="filters"></div>
+      <input class="search" id="searchInput" type="search" placeholder="найти: яблоко, 北京, pinyin">
+    </div>
+    <div class="word-grid" id="wordGrid"></div>
+  </section>
+
+  <section class="section" id="practice">
+    <div class="section-head">
+      <h2 class="section-title">Упражнения</h2>
+      <div class="meta">Раунды по 1 слову</div>
+    </div>
+    <div class="trainer">
+      <aside class="trainer-side">
+        <div>
+          <div class="meta">Режим</div>
+          <div class="mode-grid" id="modeGrid">
+            <button class="btn active" data-mode="translation">Перевод</button>
+            <button class="btn" data-mode="listening">Аудио</button>
+            <button class="btn" data-mode="mixed">Оба вместе</button>
+          </div>
+        </div>
+        <div class="scoreboard" aria-label="Счет">
+          <div class="score-item">
+            <div class="meta">Верно</div>
+            <div class="score-value" id="rightScore">0</div>
+          </div>
+          <div class="score-item">
+            <div class="meta">Ошибки</div>
+            <div class="score-value" id="wrongScore">0</div>
+          </div>
+          <div class="score-item">
+            <div class="meta">Серия</div>
+            <div class="score-value" id="streakScore">0</div>
+          </div>
+        </div>
+        <button class="btn primary" id="newRoundButton">Новое слово</button>
+        <button class="btn" id="resetProgressButton">Сбросить прогресс</button>
+      </aside>
+      <div class="stage" id="stage"></div>
+    </div>
+  </section>
+
+  <section class="section" id="list">
+    <div class="section-head">
+      <h2 class="section-title">Весь список</h2>
+      <div class="meta">Пиньинь + перевод</div>
+    </div>
+    <table class="list-table">
+      <thead>
+        <tr>
+          <th>Китайский</th>
+          <th>Пиньинь</th>
+          <th>Тон</th>
+          <th>Перевод</th>
+          <th>Звук</th>
+        </tr>
+      </thead>
+      <tbody id="listBody"></tbody>
+    </table>
+  </section>
+</main>
+
+<script>
+const rawWords = [
+  { hanzi: "你们", pinyin: "nǐmen", plain: "nimen", ru: "вы", picture: "👥", group: "люди" },
+  { hanzi: "没关系", pinyin: "méi guānxi", plain: "mei guanxi", ru: "неважно", picture: "✓", group: "фразы" },
+  { hanzi: "个", pinyin: "gè", plain: "ge", ru: "счетное слово", picture: "①", group: "служебные" },
+  { hanzi: "苹果", pinyin: "píngguǒ", plain: "pingguo", ru: "яблоко", picture: "🍎", group: "еда" },
+  { hanzi: "朋友", pinyin: "péngyou", plain: "pengyou", ru: "друг", picture: "🤝", group: "люди" },
+  { hanzi: "您", pinyin: "nín", plain: "nin", ru: "вы (вежл.)", picture: "🙇", group: "люди" },
+  { hanzi: "零", pinyin: "líng", plain: "ling", ru: "ноль", picture: "0", group: "числа" },
+  { hanzi: "米饭", pinyin: "mǐfàn", plain: "mifan", ru: "вареный рис", picture: "🍚", group: "еда" },
+  { hanzi: "汉语", pinyin: "hànyǔ", plain: "hanyu", ru: "китайский язык", picture: "🗣", group: "учеба" },
+  { hanzi: "中国", pinyin: "Zhōngguó", plain: "zhongguo", ru: "Китай", picture: "🇨🇳", group: "места" },
+  { hanzi: "吃", pinyin: "chī", plain: "chi", ru: "есть", picture: "🍽", group: "действия" },
+  { hanzi: "看", pinyin: "kàn", plain: "kan", ru: "читать", picture: "📖", group: "действия" },
+  { hanzi: "我们", pinyin: "wǒmen", plain: "women", ru: "мы", picture: "👥", group: "люди" },
+  { hanzi: "她", pinyin: "tā", plain: "ta", ru: "она", picture: "👩", group: "люди" },
+  { hanzi: "他", pinyin: "tā", plain: "ta", ru: "он", picture: "👨", group: "люди" },
+  { hanzi: "北京", pinyin: "Běijīng", plain: "beijing", ru: "Пекин", picture: "🏯", group: "места" },
+  { hanzi: "学校", pinyin: "xuéxiào", plain: "xuexiao", ru: "школа", picture: "🏫", group: "учеба" },
+  { hanzi: "学", pinyin: "xué", plain: "xue", ru: "учиться", picture: "🎓", group: "учеба" },
+  { hanzi: "在", pinyin: "zài", plain: "zai", ru: "находиться", picture: "📍", group: "служебные" },
+  { hanzi: "家", pinyin: "jiā", plain: "jia", ru: "дом", picture: "⌂", group: "места" },
+  { hanzi: "晚上", pinyin: "wǎnshang", plain: "wanshang", ru: "вечер", picture: "☾", group: "время" },
+  { hanzi: "明天", pinyin: "míngtiān", plain: "mingtian", ru: "завтра", picture: "→", group: "время" },
+  { hanzi: "今天", pinyin: "jīntiān", plain: "jintian", ru: "сегодня", picture: "☀", group: "время" },
+  { hanzi: "请", pinyin: "qǐng", plain: "qing", ru: "пожалуйста", picture: "🙏", group: "фразы" },
+  { hanzi: "够", pinyin: "gòu", plain: "gou", ru: "довольно", picture: "=", group: "состояния" },
+  { hanzi: "够", pinyin: "gòu", plain: "gou", ru: "хватать", picture: "✓", group: "состояния" },
+  { hanzi: "美", pinyin: "měi", plain: "mei", ru: "красивый", picture: "✦", group: "состояния" },
+  { hanzi: "爱", pinyin: "ài", plain: "ai", ru: "любить", picture: "♥", group: "действия" },
+  { hanzi: "菜", pinyin: "cài", plain: "cai", ru: "блюдо", picture: "🥬", group: "еда" },
+  { hanzi: "看", pinyin: "kàn", plain: "kan", ru: "смотреть", picture: "👀", group: "действия" },
+  { hanzi: "飞", pinyin: "fēi", plain: "fei", ru: "лететь", picture: "✈", group: "действия" },
+  { hanzi: "书", pinyin: "shū", plain: "shu", ru: "книга", picture: "📕", group: "учеба" },
+  { hanzi: "妈", pinyin: "mā", plain: "ma", ru: "мама", picture: "👩", group: "люди" },
+  { hanzi: "听", pinyin: "tīng", plain: "ting", ru: "слушать", picture: "👂", group: "действия" },
+  { hanzi: "读", pinyin: "dú", plain: "du", ru: "читать", picture: "📖", group: "действия" },
+  { hanzi: "请", pinyin: "qǐng", plain: "qing", ru: "просить", picture: "?", group: "фразы" },
+  { hanzi: "迟到", pinyin: "chídào", plain: "chidao", ru: "опоздать", picture: "⏰", group: "действия" },
+  { hanzi: "知道", pinyin: "zhīdào", plain: "zhidao", ru: "знать", picture: "💡", group: "действия" },
+  { hanzi: "对不起", pinyin: "duìbuqǐ", plain: "duibuqi", ru: "извините", picture: "🙇", group: "фразы" },
+  { hanzi: "太", pinyin: "tài", plain: "tai", ru: "слишком", picture: "↑", group: "служебные" },
+  { hanzi: "不", pinyin: "bù", plain: "bu", ru: "не", picture: "×", group: "служебные" },
+  { hanzi: "不客气", pinyin: "bú kèqi", plain: "bu keqi", ru: "не за что", picture: "🤝", group: "фразы" },
+  { hanzi: "谢谢", pinyin: "xièxie", plain: "xiexie", ru: "спасибо", picture: "🙏", group: "фразы" },
+  { hanzi: "再见", pinyin: "zàijiàn", plain: "zaijian", ru: "до свидания", picture: "👋", group: "фразы" },
+  { hanzi: "累", pinyin: "lèi", plain: "lei", ru: "усталый", picture: "😴", group: "состояния" },
+  { hanzi: "饿", pinyin: "è", plain: "e", ru: "голодный", picture: "🍽", group: "состояния" },
+  { hanzi: "你呢", pinyin: "nǐ ne", plain: "ni ne", ru: "а ты?", picture: "?", group: "фразы" },
+  { hanzi: "很", pinyin: "hěn", plain: "hen", ru: "очень", picture: "++", group: "служебные" },
+  { hanzi: "好", pinyin: "hǎo", plain: "hao", ru: "хороший", picture: "✓", group: "состояния" },
+  { hanzi: "你", pinyin: "nǐ", plain: "ni", ru: "ты", picture: "👤", group: "люди" },
+  { hanzi: "我", pinyin: "wǒ", plain: "wo", ru: "я", picture: "●", group: "люди" }
+];
+
+const words = rawWords
+  .map((word, index) => ({
+    ...word,
+    rawIndex: index,
+    audio: ttsUrls(word.hanzi),
+    tone: toneFromPinyin(word.pinyin),
+    id: `${word.hanzi}-${word.ru}-${index}`
+  }))
+  .sort((a, b) => a.tone - b.tone || a.plain.localeCompare(b.plain, "en") || a.rawIndex - b.rawIndex);
+
+const REQUIRED_CORRECT = 15;
+
+const state = {
+  filter: "все",
+  mode: "translation",
+  current: null,
+  right: 0,
+  wrong: 0,
+  streak: 0,
+  answered: false,
+  progress: loadProgress()
+};
+
+const grid = document.getElementById("wordGrid");
+const filters = document.getElementById("filters");
+const searchInput = document.getElementById("searchInput");
+const stage = document.getElementById("stage");
+const listBody = document.getElementById("listBody");
+let activeAudio = null;
+let chineseVoice = null;
+
+function isIOS() {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+}
+
+function loadProgress() {
+  try {
+    const savedProgress = JSON.parse(window.localStorage.getItem("hanzi-progress-v2") || "{}");
+    if (savedProgress && !Array.isArray(savedProgress) && typeof savedProgress === "object") return savedProgress;
+  } catch (error) {
+  }
+  return {};
+}
+
+function storeProgress(progress) {
+  try {
+    window.localStorage.setItem("hanzi-progress-v2", JSON.stringify(progress));
+  } catch (error) {
+    // Local files on iPhone can block storage. The trainer should still work.
+  }
+}
+
+function ttsUrls(text) {
+  const query = encodeURIComponent(text);
+  return [
+    `https://translate.googleapis.com/translate_tts?ie=UTF-8&client=gtx&tl=zh-CN&q=${query}`,
+    `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=zh-CN&q=${query}`,
+    `https://dict.youdao.com/dictvoice?audio=${query}&type=2`,
+    `https://fanyi.baidu.com/gettts?lan=zh&text=${query}&spd=3&source=web`
+  ];
+}
+
+function refreshVoices() {
+  if (!("speechSynthesis" in window)) return;
+  const voices = window.speechSynthesis.getVoices();
+  chineseVoice =
+    voices.find(voice => /tingting/i.test(voice.name)) ||
+    voices.find(voice => voice.lang && voice.lang.toLowerCase() === "zh-cn") ||
+    voices.find(voice => voice.lang && voice.lang.toLowerCase().startsWith("zh")) ||
+    null;
+}
+
+if ("speechSynthesis" in window) {
+  refreshVoices();
+  window.speechSynthesis.onvoiceschanged = refreshVoices;
+}
+
+function speak(input) {
+  const word = typeof input === "object" ? input : words.find(item => item.hanzi === input);
+  if (word && isIOS()) {
+    speakWithBrowserVoice(word.hanzi);
+    return;
+  }
+  if (word && word.audio) {
+    playAudioSources(word, 0);
+    return;
+  }
+  speakWithBrowserVoice(String(input));
+}
+
+function playAudioSources(word, index) {
+  if (activeAudio) {
+    activeAudio.pause();
+    activeAudio.currentTime = 0;
+  }
+  const sources = Array.isArray(word.audio) ? word.audio : [word.audio];
+  if (!sources[index]) {
+    speakWithBrowserVoice(word.hanzi);
+    return;
+  }
+  activeAudio = new Audio(sources[index]);
+  activeAudio.preload = "auto";
+  activeAudio.addEventListener("error", () => playAudioSources(word, index + 1), { once: true });
+  activeAudio.play().catch(() => playAudioSources(word, index + 1));
+}
+
+function speakWithBrowserVoice(text) {
+  if (!("speechSynthesis" in window)) {
+    setFeedback("Не получилось проиграть аудио.", "bad");
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "zh-CN";
+  refreshVoices();
+  if (chineseVoice) utterance.voice = chineseVoice;
+  utterance.rate = 0.68;
+  utterance.pitch = 1;
+  window.speechSynthesis.speak(utterance);
+}
+
+function haohanUrl(word) {
+  return `https://haohan.io/ru/character/${encodeURIComponent(word.hanzi)}/`;
+}
+
+function toneFromPinyin(pinyin) {
+  const firstSyllable = pinyin.trim().split(/\s+/)[0];
+  if (/[āēīōūǖĀĒĪŌŪǕ]/.test(firstSyllable)) return 1;
+  if (/[áéíóúǘÁÉÍÓÚǗ]/.test(firstSyllable)) return 2;
+  if (/[ǎěǐǒǔǚǍĚǏǑǓǙ]/.test(firstSyllable)) return 3;
+  if (/[àèìòùǜÀÈÌÒÙǛ]/.test(firstSyllable)) return 4;
+  return 5;
+}
+
+function toneLabel(tone) {
+  return tone === 5 ? "нейтр." : `${tone} тон`;
+}
+
+function wordProgress(word) {
+  return Math.min(Number(state.progress[word.id] || 0), REQUIRED_CORRECT);
+}
+
+function isMastered(word) {
+  return wordProgress(word) >= REQUIRED_CORRECT;
+}
+
+function learnedWords() {
+  return words.filter(isMastered).length;
+}
+
+function saveProgress() {
+  storeProgress(state.progress);
+  updateProgress();
+}
+
+function updateProgress() {
+  const learned = learnedWords();
+  document.getElementById("masteredCount").textContent = learned;
+  document.getElementById("totalCount").textContent = words.length;
+  document.getElementById("heroTotal").textContent = words.length;
+  document.getElementById("progressBar").style.width = `${Math.round((learned / words.length) * 100)}%`;
+}
+
+function groups() {
+  return ["все", ...Array.from(new Set(words.map(word => word.group)))];
+}
+
+function renderFilters() {
+  filters.innerHTML = "";
+  groups().forEach(group => {
+    const button = document.createElement("button");
+    button.className = `btn ${state.filter === group ? "active" : ""}`;
+    button.textContent = group;
+    button.addEventListener("click", () => {
+      state.filter = group;
+      renderFilters();
+      renderCards();
+    });
+    filters.appendChild(button);
+  });
+}
+
+function visibleWords() {
+  const query = searchInput.value.trim().toLowerCase();
+  return words.filter(word => {
+    const byGroup = state.filter === "все" || word.group === state.filter;
+    const haystack = `${word.hanzi} ${word.pinyin} ${word.plain} ${word.ru} ${word.group}`.toLowerCase();
+    return byGroup && (!query || haystack.includes(query));
+  });
+}
+
+function renderCards() {
+  grid.innerHTML = "";
+  visibleWords().forEach(word => {
+    const card = document.createElement("article");
+    card.className = "word-card";
+    card.innerHTML = `
+      <div class="picture" aria-hidden="true">${word.picture}</div>
+      <div class="word-body">
+        <div class="hanzi">${word.hanzi}</div>
+        <div class="pinyin">${word.pinyin}</div>
+        <div class="tone">${toneLabel(word.tone)}</div>
+        <div class="ru">${word.ru}</div>
+      </div>
+      <div class="word-actions">
+        <button class="btn icon" type="button" title="Озвучить">▶</button>
+        <a class="btn" href="${haohanUrl(word)}" target="_blank" rel="noreferrer" title="Открыть Haohan">HH</a>
+        <div class="card-progress ${isMastered(word) ? "done" : ""}">${wordProgress(word)}/${REQUIRED_CORRECT}</div>
+      </div>
+    `;
+    const [soundButton] = card.querySelectorAll("button");
+    soundButton.addEventListener("click", () => speak(word));
+    grid.appendChild(card);
+  });
+}
+
+function shuffle(items) {
+  return [...items].sort(() => Math.random() - 0.5);
+}
+
+function pickWord() {
+  const pool = words.filter(word => !isMastered(word));
+  return shuffle(pool.length ? pool : words).sort((a, b) => wordProgress(a) - wordProgress(b))[0];
+}
+
+function optionsFor(word, key) {
+  const values = new Set([word[key]]);
+  shuffle(words).forEach(item => {
+    if (values.size < 4 && item[key] !== word[key]) values.add(item[key]);
+  });
+  return shuffle([...values]);
+}
+
+function wordOptionsFor(word) {
+  const picked = new Map([[word.id, word]]);
+  shuffle(words).forEach(item => {
+    const label = `${item.hanzi} ${item.pinyin}`;
+    const duplicateLabel = [...picked.values()].some(pickedItem => `${pickedItem.hanzi} ${pickedItem.pinyin}` === label);
+    if (picked.size < 4 && item.id !== word.id && !duplicateLabel) picked.set(item.id, item);
+  });
+  return shuffle([...picked.values()]);
+}
+
+function promptMarkup(word, mode) {
+  const text = mode === "listening" ? "Слушай" : word.hanzi;
+  const sub = mode === "translation"
+    ? `${word.pinyin} · ${toneLabel(word.tone)} · прогресс ${wordProgress(word)}/${REQUIRED_CORRECT}`
+    : `${toneLabel(word.tone)} · прогресс ${wordProgress(word)}/${REQUIRED_CORRECT}`;
+  return `
+    <div class="prompt">
+      <div class="picture" aria-hidden="true">${word.picture}</div>
+      <div>
+        <div class="prompt-word">${text}</div>
+        <div class="prompt-sub">${sub}</div>
+      </div>
+    </div>
+  `;
+}
+
+function renderRound() {
+  state.current = pickWord();
+  state.answered = false;
+  const word = state.current;
+  const roundMode = state.mode === "mixed" ? (Math.random() > 0.5 ? "translation" : "listening") : state.mode;
+
+  if (roundMode === "translation") {
+    stage.innerHTML = `
+      ${promptMarkup(word, "translation")}
+      <div class="options">
+        ${optionsFor(word, "ru").map(option => `<button class="option" type="button">${option}</button>`).join("")}
+      </div>
+      ${footerMarkup()}
+    `;
+    stage.querySelectorAll(".option").forEach(button => {
+      button.addEventListener("click", () => checkChoice(button, button.textContent === word.ru, `${word.hanzi} · ${word.pinyin} · ${word.ru}`));
+    });
+  }
+
+  if (roundMode === "listening") {
+    stage.innerHTML = `
+      ${promptMarkup(word, "listening")}
+      <div class="options">
+        ${wordOptionsFor(word).map(option => `
+          <button class="option" type="button" data-id="${option.id}">
+            <span class="option-main mini-hanzi">${option.hanzi}</span>
+            <span class="option-sub">${option.pinyin} · ${option.ru}</span>
+          </button>
+        `).join("")}
+      </div>
+      ${footerMarkup("Нажми звук и выбери иероглиф")}
+    `;
+    speak(word);
+    stage.querySelectorAll(".option").forEach(button => {
+      button.addEventListener("click", () => checkChoice(button, button.dataset.id === word.id, `${word.hanzi} · ${word.pinyin} · ${word.ru}`));
+    });
+  }
+}
+
+function footerMarkup(note = "После ответа слово можно отметить как выученное") {
+  return `
+    <div>
+      <div class="feedback" id="feedback">${note}</div>
+      <div class="stage-actions" style="margin-top: 12px;">
+        <button class="btn icon" id="speakCurrent" type="button" title="Озвучить">▶</button>
+        <a class="btn" href="${haohanUrl(state.current)}" target="_blank" rel="noreferrer">Haohan</a>
+        <button class="btn" id="showAnswer" type="button">Показать ответ</button>
+        <button class="btn primary" id="nextWord" type="button">Дальше</button>
+      </div>
+    </div>
+  `;
+}
+
+function bindFooter() {
+  const sound = document.getElementById("speakCurrent");
+  const show = document.getElementById("showAnswer");
+  const next = document.getElementById("nextWord");
+  if (sound) sound.addEventListener("click", () => speak(state.current));
+  if (show) show.addEventListener("click", () => setFeedback(`${state.current.hanzi} · ${state.current.pinyin} · ${state.current.ru}`, ""));
+  if (next) next.addEventListener("click", renderRound);
+}
+
+function setFeedback(text, kind) {
+  const feedback = document.getElementById("feedback");
+  if (!feedback) return;
+  feedback.textContent = text;
+  feedback.className = `feedback ${kind || ""}`;
+}
+
+function afterAnswer(isRight, answerText) {
+  if (state.answered) return;
+  state.answered = true;
+  if (isRight) {
+    state.right += 1;
+    state.streak += 1;
+    const nextCount = Math.min(wordProgress(state.current) + 1, REQUIRED_CORRECT);
+    state.progress[state.current.id] = nextCount;
+    setFeedback(`Верно: ${answerText} · ${nextCount}/${REQUIRED_CORRECT}`, "good");
+  } else {
+    state.wrong += 1;
+    state.streak = 0;
+    setFeedback(`Почти. Правильно: ${answerText} · ${wordProgress(state.current)}/${REQUIRED_CORRECT}`, "bad");
+  }
+  saveProgress();
+  renderCards();
+  updateScores();
+}
+
+function checkChoice(button, isRight, answerText) {
+  if (state.answered) return;
+  button.classList.add(isRight ? "correct" : "wrong");
+  stage.querySelectorAll(".option").forEach(option => {
+    if (option.textContent === state.current.ru || option.dataset.id === state.current.id) option.classList.add("correct");
+  });
+  afterAnswer(isRight, answerText);
+}
+
+function normalize(text) {
+  return text
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/ü/g, "u")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function checkPinyin() {
+  const answer = normalize(document.getElementById("pinyinAnswer").value);
+  const expected = normalize(state.current.plain);
+  afterAnswer(answer === expected || answer.replace(/\s/g, "") === expected.replace(/\s/g, ""), `${state.current.pinyin} · ${state.current.ru}`);
+}
+
+function updateScores() {
+  document.getElementById("rightScore").textContent = state.right;
+  document.getElementById("wrongScore").textContent = state.wrong;
+  document.getElementById("streakScore").textContent = state.streak;
+}
+
+function renderList() {
+  listBody.innerHTML = words.map(word => `
+    <tr>
+      <td><span class="mini-hanzi">${word.hanzi}</span></td>
+      <td class="pinyin">${word.pinyin}</td>
+      <td>${toneLabel(word.tone)}</td>
+      <td>${word.ru}</td>
+      <td>
+        <button class="btn icon" type="button" data-id="${word.id}" title="Озвучить">▶</button>
+        <a class="btn" href="${haohanUrl(word)}" target="_blank" rel="noreferrer" title="Открыть Haohan">HH</a>
+      </td>
+    </tr>
+  `).join("");
+  listBody.querySelectorAll("[data-id]").forEach(button => {
+    button.addEventListener("click", () => speak(words.find(word => word.id === button.dataset.id)));
+  });
+}
+
+function initModes() {
+  document.querySelectorAll("[data-mode]").forEach(button => {
+    button.addEventListener("click", () => {
+      state.mode = button.dataset.mode;
+      document.querySelectorAll("[data-mode]").forEach(item => item.classList.toggle("active", item === button));
+      renderRound();
+    });
+  });
+}
+
+function initNav() {
+  document.querySelectorAll(".nav a").forEach(link => {
+    link.addEventListener("click", () => {
+      document.querySelectorAll(".nav a").forEach(item => item.classList.remove("active"));
+      link.classList.add("active");
+    });
+  });
+}
+
+searchInput.addEventListener("input", renderCards);
+document.getElementById("newRoundButton").addEventListener("click", renderRound);
+document.getElementById("resetProgressButton").addEventListener("click", () => {
+  state.progress = {};
+  state.right = 0;
+  state.wrong = 0;
+  state.streak = 0;
+  saveProgress();
+  updateScores();
+  renderCards();
+  renderRound();
+});
+stage.addEventListener("click", event => {
+  if (event.target.id === "speakCurrent") speak(state.current);
+  if (event.target.id === "showAnswer") setFeedback(`${state.current.hanzi} · ${state.current.pinyin} · ${state.current.ru}`, "");
+  if (event.target.id === "nextWord") renderRound();
+});
+
+updateProgress();
+updateScores();
+renderFilters();
+renderCards();
+renderList();
+initModes();
+initNav();
+renderRound();
+</script>
+</body>
+</html>
