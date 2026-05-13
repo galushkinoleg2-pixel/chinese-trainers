@@ -1,0 +1,2834 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Китайский · все предыдущие уроки</title>
+<style>
+:root {
+  --ink: #000000;
+  --paper: #FFFFFF;
+  --accent: #FF0000;
+  --ink-90: #1A1A1A;
+  --ink-60: #666666;
+  --ink-30: #BFBFBF;
+  --ink-12: #E0E0E0;
+  --ink-04: #F5F5F5;
+  --ok: #007A33;
+  --warn: #B27300;
+  --font-display: Inter, "Helvetica Neue", Arial, sans-serif;
+  --font-text: Inter, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", "JetBrains Mono", Menlo, monospace;
+  --bd-1: 1px solid var(--ink);
+  --bd-2: 2px solid var(--ink);
+  --bd-4: 4px solid var(--ink);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-text);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+button, input { font: inherit; }
+button { color: inherit; }
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: stretch;
+  border-bottom: var(--bd-4);
+  background: var(--paper);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  padding: 16px 22px;
+  border-right: var(--bd-2);
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+.nav {
+  display: flex;
+  overflow-x: auto;
+}
+.nav a, .counter {
+  display: flex;
+  align-items: center;
+  padding: 16px 18px;
+  border-right: var(--bd-1);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: var(--ink-60);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.nav a:hover, .nav a.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+.counter {
+  border-right: 0;
+  border-left: var(--bd-2);
+  color: var(--ink);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr);
+  gap: 48px;
+  padding: 56px 48px 48px;
+  border-bottom: var(--bd-2);
+  min-height: calc(100vh - 68px);
+  align-items: end;
+}
+.hero-kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: var(--ink-60);
+  margin-bottom: 18px;
+}
+h1 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 116px;
+  line-height: 0.92;
+  max-width: 980px;
+}
+.hero-copy {
+  max-width: 620px;
+  margin-top: 24px;
+  font-size: 18px;
+}
+.hero-panel {
+  border-top: var(--bd-4);
+  padding-top: 18px;
+}
+.big-number {
+  font-family: var(--font-display);
+  font-size: 112px;
+  font-weight: 900;
+  line-height: 0.85;
+}
+.meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: var(--ink-60);
+}
+.progress-shell {
+  margin-top: 22px;
+  border: var(--bd-2);
+  height: 22px;
+  background: var(--ink-04);
+}
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  background: var(--accent);
+  transition: width 180ms linear;
+}
+
+.section {
+  padding: 56px 48px 72px;
+  border-bottom: var(--bd-2);
+}
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: var(--bd-2);
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 18px;
+  border: var(--bd-2);
+  background: var(--paper);
+  font-weight: 800;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn:hover, .btn.active {
+  background: var(--ink);
+  color: var(--paper);
+}
+.btn.primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+.btn.primary:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.btn.icon {
+  width: 44px;
+  padding: 0;
+  font-size: 20px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.search {
+  width: min(100%, 360px);
+  padding: 11px 14px;
+  border: var(--bd-2);
+  outline: 0;
+}
+.search:focus {
+  outline: 4px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.word-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 0;
+  border-top: var(--bd-2);
+  border-left: var(--bd-2);
+}
+.word-card {
+  min-height: 232px;
+  display: grid;
+  grid-template-rows: 96px 1fr auto;
+  border-right: var(--bd-2);
+  border-bottom: var(--bd-2);
+  background: var(--paper);
+}
+.picture {
+  display: grid;
+  place-items: center;
+  min-height: 96px;
+  background:
+    linear-gradient(90deg, transparent 49%, var(--ink-12) 50%, transparent 51%),
+    linear-gradient(0deg, transparent 49%, var(--ink-12) 50%, transparent 51%),
+    var(--ink-04);
+  border-bottom: var(--bd-1);
+  font-size: 48px;
+}
+.word-body {
+  padding: 14px 14px 10px;
+}
+.hanzi {
+  font-family: "PingFang SC", "Noto Sans CJK SC", var(--font-display);
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1;
+}
+.pinyin {
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent);
+}
+.tone {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 2px 8px;
+  border: var(--bd-1);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink);
+}
+.ru {
+  margin-top: 8px;
+  font-size: 15px;
+  font-weight: 700;
+}
+.extra {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--ink-60);
+}
+.extra span {
+  font-family: var(--font-mono);
+  color: var(--ink);
+}
+.word-actions {
+  display: grid;
+  grid-template-columns: 44px 52px 1fr;
+  border-top: var(--bd-1);
+}
+.word-actions .btn {
+  border: 0;
+  border-right: var(--bd-1);
+  min-height: 42px;
+}
+.word-actions .btn:last-child { border-right: 0; }
+.card-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 800;
+  border-right: 0;
+  background: var(--ink-04);
+}
+.card-progress.done {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.trainer {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.88fr) minmax(320px, 1.12fr);
+  border: var(--bd-2);
+}
+.trainer-side {
+  border-right: var(--bd-2);
+  padding: 24px;
+  display: grid;
+  align-content: start;
+  gap: 20px;
+}
+.mode-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+.scoreboard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: var(--bd-2);
+}
+.score-item {
+  padding: 14px;
+  border-right: var(--bd-1);
+}
+.score-item:last-child { border-right: 0; }
+.score-value {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 1;
+}
+.stage {
+  min-height: 520px;
+  padding: 28px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 22px;
+}
+.prompt {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 22px;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: var(--bd-2);
+}
+.prompt .picture {
+  min-height: 120px;
+  border: var(--bd-2);
+  font-size: 56px;
+}
+.prompt-word {
+  font-family: "PingFang SC", "Noto Sans CJK SC", var(--font-display);
+  font-size: 96px;
+  font-weight: 900;
+  line-height: 0.95;
+}
+.prompt-sub {
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--ink-60);
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+.options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  align-content: start;
+}
+.option {
+  min-height: 76px;
+  padding: 14px;
+  border: var(--bd-2);
+  background: var(--paper);
+  text-align: left;
+  font-weight: 800;
+  cursor: pointer;
+}
+.option .option-main {
+  display: block;
+}
+.option .option-sub {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink-60);
+}
+.option:hover { background: var(--ink-04); }
+.option.correct {
+  background: #E0F2E9;
+  border-color: var(--ok);
+}
+.option.wrong {
+  background: #FFE5E5;
+  border-color: var(--accent);
+}
+.answer-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: start;
+}
+.answer-input {
+  width: 100%;
+  min-height: 54px;
+  padding: 13px 16px;
+  border: var(--bd-2);
+  outline: 0;
+  font-size: 20px;
+}
+.answer-input:focus {
+  outline: 4px solid var(--accent);
+  outline-offset: -2px;
+}
+.feedback {
+  min-height: 52px;
+  padding: 13px 16px;
+  border-left: 8px solid var(--ink);
+  background: var(--ink-04);
+  font-weight: 800;
+}
+.feedback.good {
+  border-left-color: var(--ok);
+  background: #E0F2E9;
+}
+.feedback.bad {
+  border-left-color: var(--accent);
+  background: #FFE5E5;
+}
+.stage-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.study-card {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  padding: 18px;
+  border: var(--bd-2);
+  background: var(--paper);
+}
+.study-meaning {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 900;
+  line-height: 1.08;
+}
+
+.write-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(72px, 1fr));
+  gap: 0;
+  border-top: var(--bd-2);
+  border-left: var(--bd-2);
+}
+.write-cell {
+  aspect-ratio: 1;
+  border-right: var(--bd-2);
+  border-bottom: var(--bd-2);
+  background:
+    linear-gradient(90deg, transparent 49.4%, var(--ink-30) 50%, transparent 50.6%),
+    linear-gradient(0deg, transparent 49.4%, var(--ink-30) 50%, transparent 50.6%),
+    linear-gradient(45deg, transparent 49.5%, var(--ink-12) 50%, transparent 50.5%),
+    linear-gradient(-45deg, transparent 49.5%, var(--ink-12) 50%, transparent 50.5%),
+    var(--paper);
+  display: grid;
+  place-items: center;
+  font-family: "PingFang SC", "Noto Sans CJK SC", var(--font-display);
+  font-size: 52px;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.14);
+}
+
+.write-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  border-top: var(--bd-2);
+  border-left: var(--bd-2);
+}
+.write-tile {
+  border-right: var(--bd-2);
+  border-bottom: var(--bd-2);
+  background: var(--paper);
+}
+.write-glyph {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(90deg, transparent 49.4%, var(--ink-30) 50%, transparent 50.6%),
+    linear-gradient(0deg, transparent 49.4%, var(--ink-30) 50%, transparent 50.6%),
+    linear-gradient(45deg, transparent 49.5%, var(--ink-12) 50%, transparent 50.5%),
+    linear-gradient(-45deg, transparent 49.5%, var(--ink-12) 50%, transparent 50.5%),
+    var(--paper);
+  font-family: "PingFang SC", "Noto Sans CJK SC", var(--font-display);
+  font-size: 64px;
+  font-weight: 900;
+}
+.write-info {
+  min-height: 102px;
+  padding: 12px;
+  border-top: var(--bd-1);
+}
+.write-info .btn {
+  margin-top: 10px;
+  min-height: 36px;
+  padding: 7px 12px;
+  font-size: 11px;
+}
+.picture svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.list-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: var(--bd-2);
+}
+.list-table th,
+.list-table td {
+  padding: 12px 14px;
+  border-bottom: var(--bd-1);
+  text-align: left;
+  vertical-align: middle;
+}
+.list-table th {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: var(--ink-60);
+  border-bottom: var(--bd-2);
+}
+.list-table tr:hover td { background: var(--ink-04); }
+.mini-hanzi {
+  font-family: "PingFang SC", "Noto Sans CJK SC", var(--font-display);
+  font-size: 28px;
+  font-weight: 900;
+}
+
+@media (max-width: 900px) {
+  .topbar { grid-template-columns: 1fr; position: static; }
+  .brand, .counter { border-left: 0; border-right: 0; border-bottom: var(--bd-1); }
+  .hero, .trainer { grid-template-columns: 1fr; }
+  .hero { min-height: 0; padding: 40px 22px; }
+  h1 { font-size: 64px; }
+  .section { padding: 40px 22px 56px; }
+  .trainer-side { border-right: 0; border-bottom: var(--bd-2); }
+  .prompt-word { font-size: 64px; }
+  .stage { min-height: 0; }
+}
+@media (max-width: 620px) {
+  .section-title { font-size: 34px; }
+  h1 { font-size: 46px; }
+  .big-number { font-size: 76px; }
+  .prompt-word { font-size: 52px; }
+  .prompt { grid-template-columns: 1fr; }
+  .options { grid-template-columns: 1fr; }
+  .answer-row { grid-template-columns: 1fr; }
+  .mode-grid { grid-template-columns: 1fr; }
+  .write-grid { grid-template-columns: repeat(2, minmax(72px, 1fr)); }
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">汉语 / Все уроки</div>
+  <nav class="nav" aria-label="Разделы">
+    <a class="active" href="#cards">Карточки</a>
+    <a href="#writing">Написание</a>
+    <a href="#practice">Упражнения</a>
+    <a href="#list">Список</a>
+  </nav>
+  <div class="counter"><span id="masteredCount">0</span>/<span id="totalCount">0</span> выучено</div>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <div class="hero-kicker">Swiss Brutalist Hanzi Drill · Lessons 1-4</div>
+      <h1>Все предыдущие уроки</h1>
+      <p class="hero-copy">Все слова и ключи до нового урока 5: смысловые картинки, примеры, пиньинь, озвучка и Anki-режим. Сначала знакомство 3/3, потом упражнения до 15/15.</p>
+    </div>
+    <aside class="hero-panel">
+      <div class="meta">Всего слов</div>
+      <div class="big-number" id="heroTotal">0</div>
+      <div class="meta" id="heroMeta">уроки 1-4 · Anki-режим · 15/15</div>
+      <div class="progress-shell" aria-label="Прогресс">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="section" id="cards">
+    <div class="section-head">
+      <h2 class="section-title">Карточки</h2>
+      <div class="meta">Слушай, повторяй, доводи до 15/15</div>
+    </div>
+    <div class="toolbar">
+      <div class="filters" id="filters"></div>
+      <input class="search" id="searchInput" type="search" placeholder="найти: 苹果, 名字, 赤, город">
+    </div>
+    <div class="word-grid" id="wordGrid"></div>
+  </section>
+
+  <section class="section" id="writing">
+    <div class="section-head">
+      <h2 class="section-title">Написание</h2>
+      <div class="meta">Форма + Haohan</div>
+    </div>
+    <div class="write-board" id="writingGrid"></div>
+  </section>
+
+  <section class="section" id="practice">
+    <div class="section-head">
+      <h2 class="section-title">Упражнения</h2>
+      <div class="meta">Раунды по 1 слову</div>
+    </div>
+    <div class="trainer">
+      <aside class="trainer-side">
+        <div>
+          <div class="meta">Режим</div>
+          <div class="mode-grid" id="modeGrid">
+            <button class="btn active" data-mode="study">Учить слова</button>
+            <button class="btn" data-mode="translation">Перевод</button>
+            <button class="btn" data-mode="listening">Аудио</button>
+            <button class="btn" data-mode="mixed">Оба вместе</button>
+          </div>
+        </div>
+        <div class="scoreboard" aria-label="Счет">
+          <div class="score-item">
+            <div class="meta">Верно</div>
+            <div class="score-value" id="rightScore">0</div>
+          </div>
+          <div class="score-item">
+            <div class="meta">Ошибки</div>
+            <div class="score-value" id="wrongScore">0</div>
+          </div>
+          <div class="score-item">
+            <div class="meta">Серия</div>
+            <div class="score-value" id="streakScore">0</div>
+          </div>
+        </div>
+        <button class="btn primary" id="newRoundButton">Новое слово</button>
+        <button class="btn" id="resetProgressButton">Сбросить прогресс</button>
+      </aside>
+      <div class="stage" id="stage"></div>
+    </div>
+  </section>
+
+  <section class="section" id="list">
+    <div class="section-head">
+      <h2 class="section-title">Весь список</h2>
+      <div class="meta">Пиньинь + перевод + детали</div>
+    </div>
+    <table class="list-table">
+      <thead>
+        <tr>
+          <th>Китайский</th>
+          <th>Пиньинь</th>
+          <th>Тон</th>
+          <th>Перевод</th>
+          <th>Детали</th>
+          <th>Звук</th>
+        </tr>
+      </thead>
+      <tbody id="listBody"></tbody>
+    </table>
+  </section>
+</main>
+
+<script>
+const rawWords = [
+  {
+    hanzi: "你们",
+    pinyin: "nǐmen",
+    plain: "nimen",
+    ru: "вы",
+    picture: "👥",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "没关系",
+    pinyin: "méi guānxi",
+    plain: "mei guanxi",
+    ru: "неважно",
+    picture: "👌",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "个",
+    pinyin: "gè",
+    plain: "ge",
+    ru: "счётное слово",
+    picture: "①",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "苹果",
+    pinyin: "píngguǒ",
+    plain: "pingguo",
+    ru: "яблоко",
+    picture: "🍎",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "朋友",
+    pinyin: "péngyou",
+    plain: "pengyou",
+    ru: "друг",
+    picture: "🤝",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "您",
+    pinyin: "nín",
+    plain: "nin",
+    ru: "вы (вежл.)",
+    picture: "🙇",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "零",
+    pinyin: "líng",
+    plain: "ling",
+    ru: "ноль",
+    picture: "0",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "米饭",
+    pinyin: "mǐfàn",
+    plain: "mifan",
+    ru: "варёный рис",
+    picture: "🍚",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "汉语",
+    pinyin: "hànyǔ",
+    plain: "hanyu",
+    ru: "китайский язык",
+    picture: "🗣️",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "中国",
+    pinyin: "Zhōngguó",
+    plain: "zhongguo",
+    ru: "Китай",
+    picture: "🇨🇳",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "吃",
+    pinyin: "chī",
+    plain: "chi",
+    ru: "есть",
+    picture: "🍽️",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "看",
+    pinyin: "kàn",
+    plain: "kan",
+    ru: "читать",
+    picture: "👀",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "我们",
+    pinyin: "wǒmen",
+    plain: "women",
+    ru: "мы",
+    picture: "👥",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "她",
+    pinyin: "tā",
+    plain: "ta",
+    ru: "она",
+    picture: "👩",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "他",
+    pinyin: "tā",
+    plain: "ta",
+    ru: "он",
+    picture: "👨",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "北京",
+    pinyin: "Běijīng",
+    plain: "beijing",
+    ru: "Пекин",
+    picture: "🏯",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "学校",
+    pinyin: "xuéxiào",
+    plain: "xuexiao",
+    ru: "школа",
+    picture: "🏫",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "学",
+    pinyin: "xué",
+    plain: "xue",
+    ru: "учиться",
+    picture: "🎓",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "在",
+    pinyin: "zài",
+    plain: "zai",
+    ru: "находиться",
+    picture: "📍",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "家",
+    pinyin: "jiā",
+    plain: "jia",
+    ru: "дом",
+    picture: "🏠",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "晚上",
+    pinyin: "wǎnshang",
+    plain: "wanshang",
+    ru: "вечер",
+    picture: "🌙",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "明天",
+    pinyin: "míngtiān",
+    plain: "mingtian",
+    ru: "завтра",
+    picture: "➡️",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "今天",
+    pinyin: "jīntiān",
+    plain: "jintian",
+    ru: "сегодня",
+    picture: "☀️",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "请",
+    pinyin: "qǐng",
+    plain: "qing",
+    ru: "пожалуйста",
+    picture: "🙏",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "够",
+    pinyin: "gòu",
+    plain: "gou",
+    ru: "довольно",
+    picture: "✅",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "够",
+    pinyin: "gòu",
+    plain: "gou",
+    ru: "хватать",
+    picture: "✅",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "美",
+    pinyin: "měi",
+    plain: "mei",
+    ru: "красивый",
+    picture: "✨",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "爱",
+    pinyin: "ài",
+    plain: "ai",
+    ru: "любить",
+    picture: "❤️",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "菜",
+    pinyin: "cài",
+    plain: "cai",
+    ru: "блюдо",
+    picture: "🥬",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "看",
+    pinyin: "kàn",
+    plain: "kan",
+    ru: "смотреть",
+    picture: "👀",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "飞",
+    pinyin: "fēi",
+    plain: "fei",
+    ru: "лететь",
+    picture: "✈️",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "书",
+    pinyin: "shū",
+    plain: "shu",
+    ru: "книга",
+    picture: "📕",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "妈",
+    pinyin: "mā",
+    plain: "ma",
+    ru: "мама",
+    picture: "👩",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "听",
+    pinyin: "tīng",
+    plain: "ting",
+    ru: "слушать",
+    picture: "👂",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "读",
+    pinyin: "dú",
+    plain: "du",
+    ru: "читать",
+    picture: "📖",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "请",
+    pinyin: "qǐng",
+    plain: "qing",
+    ru: "просить",
+    picture: "🙏",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "迟到",
+    pinyin: "chídào",
+    plain: "chidao",
+    ru: "опоздать",
+    picture: "⏰",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "知道",
+    pinyin: "zhīdào",
+    plain: "zhidao",
+    ru: "знать",
+    picture: "💡",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "对不起",
+    pinyin: "duìbuqǐ",
+    plain: "duibuqi",
+    ru: "извините",
+    picture: "🙇",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "太",
+    pinyin: "tài",
+    plain: "tai",
+    ru: "слишком",
+    picture: "⬆️",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "不",
+    pinyin: "bù",
+    plain: "bu",
+    ru: "не",
+    picture: "✖️",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "不客气",
+    pinyin: "bú kèqi",
+    plain: "bu keqi",
+    ru: "не за что",
+    picture: "🤝",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "谢谢",
+    pinyin: "xièxie",
+    plain: "xiexie",
+    ru: "спасибо",
+    picture: "🙏",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "再见",
+    pinyin: "zàijiàn",
+    plain: "zaijian",
+    ru: "до свидания",
+    picture: "👋",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "累",
+    pinyin: "lèi",
+    plain: "lei",
+    ru: "усталый",
+    picture: "😴",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "饿",
+    pinyin: "è",
+    plain: "e",
+    ru: "голодный",
+    picture: "🍽️",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "你呢",
+    pinyin: "nǐ ne",
+    plain: "ni ne",
+    ru: "а ты?",
+    picture: "❓",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "很",
+    pinyin: "hěn",
+    plain: "hen",
+    ru: "очень",
+    picture: "➕",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "好",
+    pinyin: "hǎo",
+    plain: "hao",
+    ru: "хороший",
+    picture: "✅",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "你",
+    pinyin: "nǐ",
+    plain: "ni",
+    ru: "ты",
+    picture: "👤",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "我",
+    pinyin: "wǒ",
+    plain: "wo",
+    ru: "я",
+    picture: "●",
+    group: "урок 1",
+    lesson: "урок 1"
+  },
+  {
+    hanzi: "八",
+    pinyin: "bā",
+    plain: "ba",
+    ru: "восемь; делить",
+    picture: "8",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "车",
+    pinyin: "chē",
+    plain: "che",
+    ru: "повозка",
+    picture: "🚗",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "川",
+    pinyin: "chuān",
+    plain: "chuan",
+    ru: "река",
+    picture: "🏞️",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "刀",
+    pinyin: "dāo",
+    plain: "dao",
+    ru: "нож",
+    picture: "🔪",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "工",
+    pinyin: "gōng",
+    plain: "gong",
+    ru: "работа, рабочий",
+    picture: "⚒️",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "几",
+    pinyin: "jī",
+    plain: "ji",
+    ru: "несколько",
+    picture: "🔢",
+    group: "урок 2",
+    audioText: "机",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "巾",
+    pinyin: "jīn",
+    plain: "jin",
+    ru: "полотенце, ткань",
+    picture: "🧣",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "金",
+    pinyin: "jīn",
+    plain: "jin",
+    ru: "металл",
+    picture: "🥇",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "冂",
+    pinyin: "jiōng",
+    plain: "jiong",
+    ru: "граница, ограждение",
+    picture: "🚧",
+    group: "урок 2",
+    audioText: "扃",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "山",
+    pinyin: "shān",
+    plain: "shan",
+    ru: "гора",
+    picture: "⛰️",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "尢",
+    pinyin: "wāng",
+    plain: "wang",
+    ru: "хромой",
+    picture: "🩼",
+    group: "урок 2",
+    audioText: "汪",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "心/忄",
+    pinyin: "xīn",
+    plain: "xin",
+    ru: "сердце",
+    picture: "❤️",
+    group: "урок 2",
+    lesson: "урок 2",
+    audioText: "心"
+  },
+  {
+    hanzi: "一",
+    pinyin: "yī",
+    plain: "yi",
+    ru: "один",
+    picture: "1",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "干",
+    pinyin: "gān",
+    plain: "gan",
+    ru: "сухой",
+    picture: "☀️",
+    group: "урок 2",
+    examples: "幹 (gàn — ствол, стержень)",
+    assoc: "Прямая перекладина — как основа, опора или щит.",
+    audioText: "甘",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "幺",
+    pinyin: "yāo",
+    plain: "yao",
+    ru: "крохотный",
+    picture: "🧵",
+    group: "урок 2",
+    examples: "幻 (huàn — иллюзия)",
+    assoc: "Скрученная ниточка, тонкая и маленькая.",
+    audioText: "腰",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "弓",
+    pinyin: "gōng",
+    plain: "gong",
+    ru: "лук",
+    picture: "🏹",
+    group: "урок 2",
+    examples: "引 (yǐn — тянуть)",
+    assoc: "Изогнутая форма натянутого лука.",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "彡",
+    pinyin: "shān",
+    plain: "shan",
+    ru: "пух, перья",
+    picture: "🪶",
+    group: "урок 2",
+    examples: "形 (xíng — форма)",
+    assoc: "Три штриха, как пряди или декоративные линии.",
+    audioText: "山",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "千",
+    pinyin: "qiān",
+    plain: "qian",
+    ru: "тысяча",
+    picture: "1000",
+    group: "урок 2",
+    numberOrder: 1000,
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "三",
+    pinyin: "sān",
+    plain: "san",
+    ru: "3",
+    picture: "3",
+    group: "урок 2",
+    numberOrder: 3,
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "七",
+    pinyin: "qī",
+    plain: "qi",
+    ru: "7",
+    picture: "7",
+    group: "урок 2",
+    numberOrder: 7,
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "儿",
+    pinyin: "ér",
+    plain: "er",
+    ru: "идущий человек",
+    picture: "🚶",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "门",
+    pinyin: "mén",
+    plain: "men",
+    ru: "дверь",
+    picture: "🚪",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "人",
+    pinyin: "rén",
+    plain: "ren",
+    ru: "человек",
+    picture: "👤",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "石",
+    pinyin: "shí",
+    plain: "shi",
+    ru: "камень",
+    picture: "🪨",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "亠",
+    pinyin: "tóu",
+    plain: "tou",
+    ru: "верхушка, голова",
+    picture: "🔝",
+    group: "урок 2",
+    audioText: "头",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "言",
+    pinyin: "yán",
+    plain: "yan",
+    ru: "речь",
+    picture: "💬",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "足",
+    pinyin: "zú",
+    plain: "zu",
+    ru: "нога, ступня",
+    picture: "🦶",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "零",
+    pinyin: "líng",
+    plain: "ling",
+    ru: "ноль",
+    picture: "0",
+    group: "урок 2",
+    numberOrder: 10000,
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "十",
+    pinyin: "shí",
+    plain: "shi",
+    ru: "10",
+    picture: "10",
+    group: "урок 2",
+    numberOrder: 10,
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "耳",
+    pinyin: "ěr",
+    plain: "er",
+    ru: "ухо",
+    picture: "👂",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "己",
+    pinyin: "jǐ",
+    plain: "ji",
+    ru: "сам",
+    picture: "🪞",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "口",
+    pinyin: "kǒu",
+    plain: "kou",
+    ru: "рот",
+    picture: "👄",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "女",
+    pinyin: "nǚ",
+    plain: "nu",
+    ru: "женщина",
+    picture: "👩",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "手/扌",
+    pinyin: "shǒu",
+    plain: "shou",
+    ru: "рука",
+    picture: "✋",
+    group: "урок 2",
+    lesson: "урок 2",
+    audioText: "手"
+  },
+  {
+    hanzi: "水/氵",
+    pinyin: "shuǐ",
+    plain: "shui",
+    ru: "вода",
+    picture: "💧",
+    group: "урок 2",
+    lesson: "урок 2",
+    audioText: "水"
+  },
+  {
+    hanzi: "小",
+    pinyin: "xiǎo",
+    plain: "xiao",
+    ru: "маленький",
+    picture: "🔹",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "乙",
+    pinyin: "yǐ",
+    plain: "yi",
+    ru: "второй; извивающийся",
+    picture: "〰️",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "子",
+    pinyin: "zǐ",
+    plain: "zi",
+    ru: "ребёнок",
+    picture: "👶",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "广",
+    pinyin: "guǎng",
+    plain: "guang",
+    ru: "навес",
+    picture: "🏠",
+    group: "урок 2",
+    examples: "店 (diàn — магазин)",
+    assoc: "Здание под широкой крышей.",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "廴",
+    pinyin: "yǐn",
+    plain: "yin",
+    ru: "тянуть",
+    picture: "👣",
+    group: "урок 2",
+    examples: "延 (yán — продлевать), 廷 (tíng — двор)",
+    assoc: "Вытянутый шаг, длинный след.",
+    audioText: "引",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "廾",
+    pinyin: "gǒng",
+    plain: "gong",
+    ru: "сложенные руки",
+    picture: "🙌",
+    group: "урок 2",
+    examples: "弄 (nòng — делать)",
+    assoc: "Сложенные вместе руки.",
+    audioText: "拱",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "百",
+    pinyin: "bǎi",
+    plain: "bai",
+    ru: "сотня",
+    picture: "100",
+    group: "урок 2",
+    numberOrder: 100,
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "五",
+    pinyin: "wǔ",
+    plain: "wu",
+    ru: "5",
+    picture: "5",
+    group: "урок 2",
+    numberOrder: 5,
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "九",
+    pinyin: "jiǔ",
+    plain: "jiu",
+    ru: "9",
+    picture: "9",
+    group: "урок 2",
+    numberOrder: 9,
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "寸",
+    pinyin: "cùn",
+    plain: "cun",
+    ru: "вершок, цунь",
+    picture: "📏",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "屮",
+    pinyin: "chè",
+    plain: "che",
+    ru: "росток",
+    picture: "🌱",
+    group: "урок 2",
+    audioText: "彻",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "二",
+    pinyin: "èr",
+    plain: "er",
+    ru: "два",
+    picture: "2",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "力",
+    pinyin: "lì",
+    plain: "li",
+    ru: "сила",
+    picture: "💪",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "冖",
+    pinyin: "mì",
+    plain: "mi",
+    ru: "крышка",
+    picture: "🧢",
+    group: "урок 2",
+    audioText: "密",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "木",
+    pinyin: "mù",
+    plain: "mu",
+    ru: "дерево",
+    picture: "🌳",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "目",
+    pinyin: "mù",
+    plain: "mu",
+    ru: "глаз",
+    picture: "👁️",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "日",
+    pinyin: "rì",
+    plain: "ri",
+    ru: "солнце",
+    picture: "☀️",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "入",
+    pinyin: "rù",
+    plain: "ru",
+    ru: "входить",
+    picture: "↘️",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "月",
+    pinyin: "yuè",
+    plain: "yue",
+    ru: "месяц; луна",
+    picture: "🌙",
+    group: "урок 2",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "弋",
+    pinyin: "yì",
+    plain: "yi",
+    ru: "стрелять из лука, дротик",
+    picture: "🏹",
+    group: "урок 2",
+    examples: "式 (shì — форма, стиль)",
+    assoc: "Стрела с веревкой для охоты.",
+    audioText: "意",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "彐",
+    pinyin: "jì",
+    plain: "ji",
+    ru: "голова свиньи",
+    picture: "🐽",
+    group: "урок 2",
+    examples: "彐 (jì — голова свиньи), 当 (dāng — быть, служить)",
+    assoc: "Округлая форма мордочки с линиями.",
+    audioText: "记",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "彳",
+    pinyin: "chì",
+    plain: "chi",
+    ru: "шаг левой ногой",
+    picture: "👣",
+    group: "урок 2",
+    audioText: "赤",
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "四",
+    pinyin: "sì",
+    plain: "si",
+    ru: "4",
+    picture: "4",
+    group: "урок 2",
+    numberOrder: 4,
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "六",
+    pinyin: "liù",
+    plain: "liu",
+    ru: "6",
+    picture: "6",
+    group: "урок 2",
+    numberOrder: 6,
+    lesson: "урок 2"
+  },
+  {
+    hanzi: "舟",
+    pinyin: "zhōu",
+    plain: "zhou",
+    ru: "лодка",
+    picture: "⛵",
+    group: "урок 3",
+    examples: "般 (bān — лодка, вид), 船 (chuán — судно)",
+    lesson: "урок 3"
+  },
+  {
+    hanzi: "虍",
+    pinyin: "hū",
+    plain: "hu",
+    ru: "тигр",
+    picture: "🐯",
+    group: "урок 3",
+    examples: "虎 (hǔ — тигр), 虔 (qián — почтительный)",
+    audioText: "呼",
+    lesson: "урок 3"
+  },
+  {
+    hanzi: "生词",
+    pinyin: "shēngcí",
+    plain: "shengci",
+    ru: "новое слово",
+    picture: "✨",
+    group: "урок 3",
+    lesson: "урок 3"
+  },
+  {
+    hanzi: "说",
+    pinyin: "shuō",
+    plain: "shuo",
+    ru: "говорить",
+    picture: "💬",
+    group: "урок 3",
+    lesson: "урок 3"
+  },
+  {
+    hanzi: "包",
+    pinyin: "bāo",
+    plain: "bao",
+    ru: "сумка",
+    picture: "👜",
+    group: "урок 3",
+    lesson: "урок 3"
+  },
+  {
+    hanzi: "高兴",
+    pinyin: "gāoxìng",
+    plain: "gaoxing",
+    ru: "счастливый; рад",
+    picture: "😊",
+    group: "урок 3",
+    lesson: "урок 3"
+  },
+  {
+    hanzi: "舌",
+    pinyin: "shé",
+    plain: "she",
+    ru: "язык",
+    picture: "👅",
+    group: "урок 3",
+    examples: "话 (huà — речь), 舐 (shì — лизать)",
+    lesson: "урок 3"
+  },
+  {
+    hanzi: "虫",
+    pinyin: "chóng",
+    plain: "chong",
+    ru: "насекомое",
+    picture: "🦋",
+    group: "урок 3",
+    examples: "蚊 (wén — комар), 蝶 (dié — бабочка)",
+    lesson: "урок 3"
+  },
+  {
+    hanzi: "行",
+    pinyin: "xíng",
+    plain: "xing",
+    ru: "идти, делать",
+    picture: "🚶",
+    group: "урок 3",
+    examples: "银行 (yínháng — банк)",
+    audioText: "形",
+    lesson: "урок 3"
+  },
+  {
+    hanzi: "舛",
+    pinyin: "chuǎn",
+    plain: "chuan",
+    ru: "ошибка, противоречивый",
+    picture: "⚠️",
+    group: "урок 3",
+    examples: "舞 (wǔ — танцевать)",
+    audioText: "喘",
+    lesson: "урок 3"
+  },
+  {
+    hanzi: "艸/艹",
+    pinyin: "cǎo",
+    plain: "cao",
+    ru: "трава, растение",
+    picture: "🌿",
+    group: "урок 3",
+    examples: "花 (huā — цветок), 茶 (chá — чай)",
+    audioText: "草",
+    lesson: "урок 3"
+  },
+  {
+    hanzi: "懂",
+    pinyin: "dǒng",
+    plain: "dong",
+    ru: "понимать",
+    picture: "💡",
+    group: "урок 3",
+    lesson: "урок 3"
+  },
+  {
+    hanzi: "艮",
+    pinyin: "gèn",
+    plain: "gen",
+    ru: "преграда, твердый, крепкий",
+    picture: "🧱",
+    group: "урок 3",
+    examples: "很 (hěn — очень), 良 (liáng — хороший, родственен по структуре)",
+    audioText: "亘",
+    lesson: "урок 3"
+  },
+  {
+    hanzi: "色",
+    pinyin: "sè",
+    plain: "se",
+    ru: "цвет",
+    picture: "🎨",
+    group: "урок 3",
+    examples: "景色 (jǐngsè — пейзаж), 颜色 (yánsè — цвет)",
+    lesson: "урок 3"
+  },
+  {
+    hanzi: "血",
+    pinyin: "xuè",
+    plain: "xue",
+    ru: "кровь",
+    picture: "🩸",
+    group: "урок 3",
+    examples: "血液 (xuèyè — кровь), 流血 (liúxuè — кровоточить)",
+    lesson: "урок 3"
+  },
+  {
+    hanzi: "笑",
+    pinyin: "xiào",
+    plain: "xiao",
+    ru: "смеяться",
+    picture: "😄",
+    group: "урок 3",
+    lesson: "урок 3"
+  },
+  {
+    hanzi: "作业",
+    pinyin: "zuòyè",
+    plain: "zuoye",
+    ru: "домашнее задание",
+    picture: "✎",
+    group: "урок 3",
+    lesson: "урок 3"
+  },
+  {
+    hanzi: "会",
+    pinyin: "huì",
+    plain: "hui",
+    ru: "уметь",
+    picture: "✅",
+    group: "урок 3",
+    lesson: "урок 3"
+  },
+  {
+    hanzi: "叫",
+    pinyin: "jiào",
+    plain: "jiao",
+    ru: "называться",
+    picture: "📣",
+    group: "урок 3",
+    lesson: "урок 3"
+  },
+  {
+    hanzi: "吗",
+    pinyin: "ma",
+    plain: "ma",
+    ru: "вопросительная частица",
+    picture: "❓",
+    group: "урок 3",
+    lesson: "урок 3"
+  },
+  {
+    hanzi: "他",
+    pinyin: "tā",
+    plain: "ta",
+    ru: "он",
+    picture: "👨",
+    group: "урок 4",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "她",
+    pinyin: "tā",
+    plain: "ta",
+    ru: "она",
+    picture: "👩",
+    group: "урок 4",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "它",
+    pinyin: "tā",
+    plain: "ta",
+    ru: "оно",
+    picture: "📦",
+    group: "урок 4",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "心/忄",
+    pinyin: "xīn",
+    plain: "xin",
+    ru: "сердце",
+    picture: "❤️",
+    group: "урок 4",
+    examples: "情 (qíng — чувство)",
+    audioText: "心",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "戈",
+    pinyin: "gē",
+    plain: "ge",
+    ru: "копье, оружие",
+    picture: "⚔️",
+    group: "урок 4",
+    examples: "我 (wǒ — я), 战 (zhàn — война)",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "方",
+    pinyin: "fāng",
+    plain: "fang",
+    ru: "квадрат, направление",
+    picture: "🧭",
+    group: "урок 4",
+    examples: "放 (fàng — отпускать)",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "学生",
+    pinyin: "xuéshēng",
+    plain: "xuesheng",
+    ru: "студент",
+    picture: "🎓",
+    group: "урок 4",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "什么",
+    pinyin: "shénme",
+    plain: "shenme",
+    ru: "что?; какой?",
+    picture: "❓",
+    group: "урок 4",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "支",
+    pinyin: "zhī",
+    plain: "zhi",
+    ru: "ветка, опора",
+    picture: "🌿",
+    group: "урок 4",
+    examples: "技 (jì — навык)",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "讠",
+    pinyin: "yán",
+    plain: "yan",
+    ru: "речь, слова (другой вариант написания 言)",
+    picture: "💬",
+    group: "урок 4",
+    examples: "说 (shuō — говорить), 语 (yǔ — язык)",
+    audioText: "言",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "名字",
+    pinyin: "míngzi",
+    plain: "mingzi",
+    ru: "имя",
+    picture: "🏷️",
+    group: "урок 4",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "豆",
+    pinyin: "dòu",
+    plain: "dou",
+    ru: "боб, сосуд",
+    picture: "🫘",
+    group: "урок 4",
+    examples: "豆腐 (dòufu — тофу), 登 (dēng — подниматься)",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "对",
+    pinyin: "duì",
+    plain: "dui",
+    ru: "правильно",
+    picture: "✅",
+    group: "урок 4",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "户",
+    pinyin: "hù",
+    plain: "hu",
+    ru: "двор, дверь",
+    picture: "🚪",
+    group: "урок 4",
+    examples: "房 (fáng — дом)",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "手/扌",
+    pinyin: "shǒu",
+    plain: "shou",
+    ru: "рука",
+    picture: "✋",
+    group: "урок 4",
+    examples: "打 (dǎ — ударять)",
+    audioText: "手",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "斗",
+    pinyin: "dǒu",
+    plain: "dou",
+    ru: "ковш",
+    picture: "🥣",
+    group: "урок 4",
+    examples: "科 (kē — наука)",
+    audioText: "抖",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "谷",
+    pinyin: "gǔ",
+    plain: "gu",
+    ru: "долина",
+    picture: "🏞️",
+    group: "урок 4",
+    examples: "裕 (yù — изобильный), 浴 (yù — купаться)",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "角/𧢲",
+    pinyin: "jiǎo",
+    plain: "jiao",
+    ru: "рог, угол",
+    picture: "📐",
+    group: "урок 4",
+    examples: "解 (jiě — объяснять), 触 (chù — касаться)",
+    audioText: "脚",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "是",
+    pinyin: "shì",
+    plain: "shi",
+    ru: "быть, являться",
+    picture: "＝",
+    group: "урок 4",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "叫",
+    pinyin: "jiào",
+    plain: "jiao",
+    ru: "звать, называться",
+    picture: "📣",
+    group: "урок 4",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "攴/攵",
+    pinyin: "pū",
+    plain: "pu",
+    ru: "бить, ударять",
+    picture: "🔨",
+    group: "урок 4",
+    examples: "政 (zhèng — политика), 故 (gù — причина)",
+    audioText: "扑",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "文",
+    pinyin: "wén",
+    plain: "wen",
+    ru: "письменность, культура",
+    picture: "📜",
+    group: "урок 4",
+    examples: "斌 (bīn — культурный, военный и гражданский)",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "斤",
+    pinyin: "jīn",
+    plain: "jin",
+    ru: "топор; мера веса (0,5 кг)",
+    picture: "🪓",
+    group: "урок 4",
+    examples: "新 (xīn — новый)",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "衣",
+    pinyin: "yī",
+    plain: "yi",
+    ru: "одежда",
+    picture: "👕",
+    group: "урок 4",
+    examples: "衬 (chèn — рубашка), 裙 (qún — юбка)",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "西/襾/覀",
+    pinyin: "yà",
+    plain: "ya",
+    ru: "крышка, покрытие",
+    picture: "☂️",
+    group: "урок 4",
+    examples: "覆 (fù — покрывать, опрокидывать), 要 (yào — хотеть)",
+    audioText: "亚",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "贝",
+    pinyin: "bèi",
+    plain: "bei",
+    ru: "раковина",
+    picture: "🐚",
+    group: "урок 4",
+    examples: "贵 (guì — дорогой), 财 (cái — богатство)",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "见",
+    pinyin: "jiàn",
+    plain: "jian",
+    ru: "видеть, зрение",
+    picture: "👁️",
+    group: "урок 4",
+    examples: "现 (xiàn — появляться), 觉 (jué — чувствовать)",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "豕",
+    pinyin: "shǐ",
+    plain: "shi",
+    ru: "свинья",
+    picture: "🐖",
+    group: "урок 4",
+    examples: "家 (jiā — семья), 象 (xiàng — слон, символически «животное»)",
+    audioText: "史",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "豸",
+    pinyin: "zhì",
+    plain: "zhi",
+    ru: "единорог",
+    picture: "🦄",
+    group: "урок 4",
+    examples: "貂 (diāo — соболь), 貘 (mò — тапир)",
+    lesson: "урок 4"
+  },
+  {
+    hanzi: "呢",
+    pinyin: "ne",
+    plain: "ne",
+    ru: "модальная частица для вопроса",
+    picture: "？",
+    group: "урок 4",
+    lesson: "урок 4"
+  }
+];
+
+const words = rawWords
+  .map((word, index) => ({
+    ...word,
+    rawIndex: index,
+    sortBlock: word.group === "числа" ? 1 : 0,
+    audio: ttsUrls(audioText(word)),
+    tone: toneFromPinyin(word.pinyin),
+    id: `${word.hanzi}-${word.ru}-${index}`
+  }))
+  .sort((a, b) => {
+    if (a.sortBlock !== b.sortBlock) return a.sortBlock - b.sortBlock;
+    if (a.sortBlock === 1) return (a.numberOrder || a.rawIndex) - (b.numberOrder || b.rawIndex) || a.rawIndex - b.rawIndex;
+    return a.tone - b.tone || a.plain.localeCompare(b.plain, "en") || a.rawIndex - b.rawIndex;
+  });
+
+const REQUIRED_CORRECT = 15;
+const REQUIRED_STUDY = 3;
+
+const state = {
+  filter: "все",
+  mode: "study",
+  current: null,
+  right: 0,
+  wrong: 0,
+  streak: 0,
+  answered: false,
+  progress: loadProgress(),
+  study: loadStudy(),
+  studyQueue: []
+};
+
+const grid = document.getElementById("wordGrid");
+const filters = document.getElementById("filters");
+const searchInput = document.getElementById("searchInput");
+const stage = document.getElementById("stage");
+const listBody = document.getElementById("listBody");
+const writingGrid = document.getElementById("writingGrid");
+let activeAudio = null;
+let chineseVoice = null;
+
+function isIOS() {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+}
+
+function loadProgress() {
+  try {
+    const savedProgress = JSON.parse(window.localStorage.getItem("hanzi-all-lessons-progress-v2") || "{}");
+    if (savedProgress && !Array.isArray(savedProgress) && typeof savedProgress === "object") return savedProgress;
+  } catch (error) {
+  }
+  return {};
+}
+
+function storeProgress(progress) {
+  try {
+    window.localStorage.setItem("hanzi-all-lessons-progress-v2", JSON.stringify(progress));
+  } catch (error) {
+    // Local files on iPhone can block storage. The trainer should still work.
+  }
+}
+
+function loadStudy() {
+  try {
+    const savedStudy = JSON.parse(window.localStorage.getItem("hanzi-all-lessons-study-v2") || "{}");
+    if (savedStudy && !Array.isArray(savedStudy) && typeof savedStudy === "object") return savedStudy;
+  } catch (error) {
+  }
+  return {};
+}
+
+function storeStudy(study) {
+  try {
+    window.localStorage.setItem("hanzi-all-lessons-study-v2", JSON.stringify(study));
+  } catch (error) {
+  }
+}
+
+function ttsUrls(text) {
+  const query = encodeURIComponent(text);
+  return [
+    `https://translate.googleapis.com/translate_tts?ie=UTF-8&client=gtx&tl=zh-CN&q=${query}`,
+    `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=zh-CN&q=${query}`,
+    `https://dict.youdao.com/dictvoice?audio=${query}&type=2`,
+    `https://fanyi.baidu.com/gettts?lan=zh&text=${query}&spd=3&source=web`
+  ];
+}
+
+function refreshVoices() {
+  if (!("speechSynthesis" in window)) return;
+  const voices = window.speechSynthesis.getVoices();
+  chineseVoice =
+    voices.find(voice => /tingting/i.test(voice.name)) ||
+    voices.find(voice => voice.lang && voice.lang.toLowerCase() === "zh-cn") ||
+    voices.find(voice => voice.lang && voice.lang.toLowerCase().startsWith("zh")) ||
+    null;
+}
+
+if ("speechSynthesis" in window) {
+  refreshVoices();
+  window.speechSynthesis.onvoiceschanged = refreshVoices;
+}
+
+function speak(input) {
+  const word = typeof input === "object" ? input : words.find(item => item.hanzi === input);
+  if (word && isIOS()) {
+    speakWithBrowserVoice(audioText(word));
+    return;
+  }
+  if (word && word.audio) {
+    playAudioSources(word, 0);
+    return;
+  }
+  speakWithBrowserVoice(audioText(input));
+}
+
+function playAudioSources(word, index) {
+  if (activeAudio) {
+    activeAudio.pause();
+    activeAudio.currentTime = 0;
+  }
+  const sources = Array.isArray(word.audio) ? word.audio : [word.audio];
+  if (!sources[index]) {
+    speakWithBrowserVoice(audioText(word));
+    return;
+  }
+  activeAudio = new Audio(sources[index]);
+  activeAudio.preload = "auto";
+  activeAudio.addEventListener("error", () => playAudioSources(word, index + 1), { once: true });
+  activeAudio.play().catch(() => playAudioSources(word, index + 1));
+}
+
+function speakWithBrowserVoice(text) {
+  if (!("speechSynthesis" in window)) {
+    setFeedback("Не получилось проиграть аудио.", "bad");
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "zh-CN";
+  refreshVoices();
+  if (chineseVoice) utterance.voice = chineseVoice;
+  utterance.rate = 0.68;
+  utterance.pitch = 1;
+  window.speechSynthesis.speak(utterance);
+}
+
+function linkText(input) {
+  if (typeof input === "object" && input) return String(input.hanzi).split("/")[0];
+  return String(input).split("/")[0];
+}
+
+function audioText(input) {
+  if (typeof input === "object" && input) return input.audioText || linkText(input);
+  return linkText(input);
+}
+
+function escapeHtml(text) {
+  return String(text).replace(/[&<>"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[char]));
+}
+
+function visualMarkup(word) {
+  const icon = escapeHtml(word.picture || linkText(word));
+  const glyph = escapeHtml(linkText(word));
+  const tone = word.tone || toneFromPinyin(word.pinyin);
+  const bg = word.group === "ключи" ? "#FFF1E6" : "#EAF2FF";
+  const accent = tone === 1 ? "#FF0000" : tone === 2 ? "#007A33" : tone === 3 ? "#B27300" : tone === 4 ? "#1A1A1A" : "#666666";
+  return `<svg viewBox="0 0 120 96" role="img" aria-label="${icon}">
+    <rect width="120" height="96" fill="${bg}"/>
+    <rect x="10" y="10" width="100" height="76" rx="0" fill="#fff" stroke="#000" stroke-width="2"/>
+    <circle cx="92" cy="22" r="9" fill="${accent}"/>
+    <text x="60" y="54" text-anchor="middle" dominant-baseline="middle" font-family="Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, PingFang SC, Arial" font-size="44">${icon}</text>
+    <text x="16" y="24" font-family="PingFang SC, Noto Sans CJK SC, Inter, Arial" font-size="16" font-weight="900" fill="#000">${glyph}</text>
+  </svg>`;
+}
+function detailMarkup(word) {
+  return `${word.examples ? `<div class="extra"><span>Примеры:</span> ${word.examples}</div>` : ""}${word.assoc ? `<div class="extra"><span>Ассоциация:</span> ${word.assoc}</div>` : ""}`;
+}
+
+function detailText(word) {
+  return [word.examples ? `Примеры: ${word.examples}` : "", word.assoc ? `Ассоциация: ${word.assoc}` : ""].filter(Boolean).join(" · ");
+}
+
+function haohanUrl(word) {
+  return `https://haohan.io/ru/character/${encodeURIComponent(linkText(word))}/`;
+}
+
+function toneFromPinyin(pinyin) {
+  const firstSyllable = pinyin.trim().split(/\s+/)[0];
+  if (/[āēīōūǖĀĒĪŌŪǕ]/.test(firstSyllable)) return 1;
+  if (/[áéíóúǘÁÉÍÓÚǗ]/.test(firstSyllable)) return 2;
+  if (/[ǎěǐǒǔǚǍĚǏǑǓǙ]/.test(firstSyllable)) return 3;
+  if (/[àèìòùǜÀÈÌÒÙǛ]/.test(firstSyllable)) return 4;
+  return 5;
+}
+
+function toneLabel(tone) {
+  return tone === 5 ? "нейтр." : `${tone} тон`;
+}
+
+function wordProgress(word) {
+  return Math.min(Number(state.progress[word.id] || 0), REQUIRED_CORRECT);
+}
+
+function studyProgress(word) {
+  return Math.min(Number(state.study[word.id] || 0), REQUIRED_STUDY);
+}
+
+function isStudyReady(word) {
+  return studyProgress(word) >= REQUIRED_STUDY;
+}
+
+function isMastered(word) {
+  return wordProgress(word) >= REQUIRED_CORRECT;
+}
+
+function learnedWords() {
+  return words.filter(isMastered).length;
+}
+
+function saveProgress() {
+  storeProgress(state.progress);
+  updateProgress();
+}
+
+function saveStudy() {
+  storeStudy(state.study);
+}
+
+function updateProgress() {
+  const learned = learnedWords();
+  document.getElementById("masteredCount").textContent = learned;
+  document.getElementById("totalCount").textContent = words.length;
+  document.getElementById("heroTotal").textContent = words.length;
+  document.getElementById("progressBar").style.width = `${Math.round((learned / words.length) * 100)}%`;
+}
+
+function groups() {
+  return ["все", ...Array.from(new Set(words.map(word => word.group)))];
+}
+
+function renderFilters() {
+  filters.innerHTML = "";
+  groups().forEach(group => {
+    const button = document.createElement("button");
+    button.className = `btn ${state.filter === group ? "active" : ""}`;
+    button.textContent = group;
+    button.addEventListener("click", () => {
+      state.filter = group;
+      renderFilters();
+      renderCards();
+    });
+    filters.appendChild(button);
+  });
+}
+
+function visibleWords() {
+  const query = searchInput.value.trim().toLowerCase();
+  return words.filter(word => {
+    const byGroup = state.filter === "все" || word.group === state.filter;
+    const haystack = `${word.hanzi} ${word.pinyin} ${word.plain} ${word.ru} ${word.group} ${word.examples || ""} ${word.assoc || ""}`.toLowerCase();
+    return byGroup && (!query || haystack.includes(query));
+  });
+}
+
+function renderCards() {
+  grid.innerHTML = "";
+  visibleWords().forEach(word => {
+    const card = document.createElement("article");
+    card.className = "word-card";
+    card.innerHTML = `
+      <div class="picture" aria-hidden="true">${visualMarkup(word)}</div>
+      <div class="word-body">
+        <div class="hanzi">${word.hanzi}</div>
+        <div class="pinyin">${word.pinyin}</div>
+        <div class="tone">${toneLabel(word.tone)}</div>
+        <div class="ru">${word.ru}</div>
+        ${detailMarkup(word)}
+      </div>
+      <div class="word-actions">
+        <button class="btn icon" type="button" title="Озвучить">▶</button>
+        <a class="btn" href="${haohanUrl(word)}" target="_blank" rel="noreferrer" title="Открыть Haohan">HH</a>
+        <div class="card-progress ${isMastered(word) ? "done" : ""}">${wordProgress(word)}/${REQUIRED_CORRECT}</div>
+      </div>
+    `;
+    const [soundButton] = card.querySelectorAll("button");
+    soundButton.addEventListener("click", () => speak(word));
+    grid.appendChild(card);
+  });
+}
+
+function shuffle(items) {
+  return [...items].sort(() => Math.random() - 0.5);
+}
+
+function pickWord() {
+  const pool = words.filter(word => !isMastered(word));
+  return shuffle(pool.length ? pool : words).sort((a, b) => wordProgress(a) - wordProgress(b))[0];
+}
+
+function pickStudyWord() {
+  const learningPool = words.filter(word => !isMastered(word) && !isStudyReady(word));
+  state.studyQueue = state.studyQueue.filter(id => learningPool.some(word => word.id === id));
+  const queuedWord = state.studyQueue.length
+    ? learningPool.find(word => word.id === state.studyQueue.shift())
+    : null;
+  if (queuedWord) return queuedWord;
+  if (learningPool.length) {
+    const lowestStudy = Math.min(...learningPool.map(studyProgress));
+    return shuffle(learningPool.filter(word => studyProgress(word) === lowestStudy))[0];
+  }
+  return pickWord();
+}
+
+function scheduleStudyReview(word) {
+  if (!word || isStudyReady(word)) return;
+  state.studyQueue = state.studyQueue.filter(id => id !== word.id);
+  const activePool = words.filter(item => !isMastered(item) && !isStudyReady(item) && item.id !== word.id);
+  const spacing = Math.min(4, Math.max(2, activePool.length));
+  state.studyQueue.splice(spacing, 0, word.id);
+}
+
+function optionsFor(word, key) {
+  const values = new Set([word[key]]);
+  shuffle(words).forEach(item => {
+    if (values.size < 4 && item[key] !== word[key]) values.add(item[key]);
+  });
+  return shuffle([...values]);
+}
+
+function wordOptionsFor(word) {
+  const picked = new Map([[word.id, word]]);
+  shuffle(words).forEach(item => {
+    const label = `${item.hanzi} ${item.pinyin}`;
+    const duplicateLabel = [...picked.values()].some(pickedItem => `${pickedItem.hanzi} ${pickedItem.pinyin}` === label);
+    if (picked.size < 4 && item.id !== word.id && !duplicateLabel) picked.set(item.id, item);
+  });
+  return shuffle([...picked.values()]);
+}
+
+function promptMarkup(word, mode) {
+  const text = mode === "listening" ? "Слушай" : word.hanzi;
+  const sub = mode === "translation"
+    ? `${word.pinyin} · ${toneLabel(word.tone)} · прогресс ${wordProgress(word)}/${REQUIRED_CORRECT}`
+    : `${toneLabel(word.tone)} · прогресс ${wordProgress(word)}/${REQUIRED_CORRECT}`;
+  return `
+    <div class="prompt">
+      <div class="picture" aria-hidden="true">${visualMarkup(word)}</div>
+      <div>
+        <div class="prompt-word">${text}</div>
+        <div class="prompt-sub">${sub}</div>
+      </div>
+    </div>
+  `;
+}
+
+function renderStudyRound() {
+  state.current = pickStudyWord();
+  state.answered = false;
+  const word = state.current;
+  const currentStudy = studyProgress(word);
+
+  if (isStudyReady(word)) {
+    renderExerciseRound(Math.random() > 0.5 ? "translation" : "listening");
+    return;
+  }
+
+  stage.innerHTML = `
+    <div class="prompt">
+      <div class="picture" aria-hidden="true">${visualMarkup(word)}</div>
+      <div>
+        <div class="prompt-word">${word.hanzi}</div>
+        <div class="prompt-sub">${word.pinyin} · ${toneLabel(word.tone)} · знакомство ${currentStudy}/${REQUIRED_STUDY}</div>
+      </div>
+    </div>
+    <div class="study-card">
+      <div class="study-meaning">${word.ru}</div>
+      ${detailMarkup(word)}
+      <div class="stage-actions">
+        <button class="btn icon" id="speakCurrent" type="button" title="Озвучить">▶</button>
+        <a class="btn" href="${haohanUrl(word)}" target="_blank" rel="noreferrer">Haohan</a>
+        <button class="btn primary" id="rememberWord" type="button">Запомнил</button>
+      </div>
+    </div>
+    <div class="feedback" id="feedback">Посмотри на картинку, знак, пиньинь и перевод. Потом нажми «Запомнил».</div>
+  `;
+  speak(word);
+}
+
+function renderRound() {
+  if (state.mode === "study") {
+    renderStudyRound();
+    return;
+  }
+  renderExerciseRound(state.mode);
+}
+
+function renderExerciseRound(mode) {
+  state.current = pickWord();
+  state.answered = false;
+  const word = state.current;
+  const roundMode = mode === "mixed" ? (Math.random() > 0.5 ? "translation" : "listening") : mode;
+
+  if (roundMode === "translation") {
+    stage.innerHTML = `
+      ${promptMarkup(word, "translation")}
+      <div class="options">
+        ${optionsFor(word, "ru").map(option => `<button class="option" type="button">${option}</button>`).join("")}
+      </div>
+      ${footerMarkup()}
+    `;
+    stage.querySelectorAll(".option").forEach(button => {
+      button.addEventListener("click", () => checkChoice(button, button.textContent === word.ru, `${word.hanzi} · ${word.pinyin} · ${word.ru}`));
+    });
+  }
+
+  if (roundMode === "listening") {
+    stage.innerHTML = `
+      ${promptMarkup(word, "listening")}
+      <div class="options">
+        ${wordOptionsFor(word).map(option => `
+          <button class="option" type="button" data-id="${option.id}">
+            <span class="option-main mini-hanzi">${option.hanzi}</span>
+            <span class="option-sub">${option.pinyin} · ${option.ru}</span>
+          </button>
+        `).join("")}
+      </div>
+      ${footerMarkup("Нажми звук и выбери иероглиф")}
+    `;
+    speak(word);
+    stage.querySelectorAll(".option").forEach(button => {
+      button.addEventListener("click", () => checkChoice(button, button.dataset.id === word.id, `${word.hanzi} · ${word.pinyin} · ${word.ru}`));
+    });
+  }
+}
+
+function rememberCurrentWord() {
+  if (!state.current) return;
+  const nextCount = Math.min(studyProgress(state.current) + 1, REQUIRED_STUDY);
+  state.study[state.current.id] = nextCount;
+  saveStudy();
+  setFeedback(nextCount >= REQUIRED_STUDY
+    ? `${state.current.hanzi} готово к упражнениям: ${nextCount}/${REQUIRED_STUDY}`
+    : `${state.current.hanzi}: ещё ${REQUIRED_STUDY - nextCount} показ(а), потом упражнения`,
+    nextCount >= REQUIRED_STUDY ? "good" : "");
+  scheduleStudyReview(state.current);
+  renderCards();
+  window.setTimeout(renderRound, 650);
+}
+
+function footerMarkup(note = "Правильный ответ добавит 1 к прогрессу слова") {
+  return `
+    <div>
+      <div class="feedback" id="feedback">${note}</div>
+      <div class="stage-actions" style="margin-top: 12px;">
+        <button class="btn icon" id="speakCurrent" type="button" title="Озвучить">▶</button>
+        <a class="btn" href="${haohanUrl(state.current)}" target="_blank" rel="noreferrer">Haohan</a>
+        <button class="btn" id="showAnswer" type="button">Показать ответ</button>
+        <button class="btn primary" id="nextWord" type="button">Дальше</button>
+      </div>
+    </div>
+  `;
+}
+
+function bindFooter() {
+  const sound = document.getElementById("speakCurrent");
+  const show = document.getElementById("showAnswer");
+  const next = document.getElementById("nextWord");
+  if (sound) sound.addEventListener("click", () => speak(state.current));
+  if (show) show.addEventListener("click", () => setFeedback(`${state.current.hanzi} · ${state.current.pinyin} · ${state.current.ru}`, ""));
+  if (next) next.addEventListener("click", renderRound);
+}
+
+function setFeedback(text, kind) {
+  const feedback = document.getElementById("feedback");
+  if (!feedback) return;
+  feedback.textContent = text;
+  feedback.className = `feedback ${kind || ""}`;
+}
+
+function afterAnswer(isRight, answerText) {
+  if (state.answered) return;
+  state.answered = true;
+  if (isRight) {
+    state.right += 1;
+    state.streak += 1;
+    const nextCount = Math.min(wordProgress(state.current) + 1, REQUIRED_CORRECT);
+    state.progress[state.current.id] = nextCount;
+    setFeedback(`Верно: ${answerText} · ${nextCount}/${REQUIRED_CORRECT}`, "good");
+  } else {
+    state.wrong += 1;
+    state.streak = 0;
+    setFeedback(`Почти. Правильно: ${answerText} · ${wordProgress(state.current)}/${REQUIRED_CORRECT}`, "bad");
+  }
+  saveProgress();
+  renderCards();
+  updateScores();
+}
+
+function checkChoice(button, isRight, answerText) {
+  if (state.answered) return;
+  button.classList.add(isRight ? "correct" : "wrong");
+  stage.querySelectorAll(".option").forEach(option => {
+    if (option.textContent === state.current.ru || option.dataset.id === state.current.id) option.classList.add("correct");
+  });
+  afterAnswer(isRight, answerText);
+}
+
+function normalize(text) {
+  return text
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/ü/g, "u")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function checkPinyin() {
+  const answer = normalize(document.getElementById("pinyinAnswer").value);
+  const expected = normalize(state.current.plain);
+  afterAnswer(answer === expected || answer.replace(/\s/g, "") === expected.replace(/\s/g, ""), `${state.current.pinyin} · ${state.current.ru}`);
+}
+
+function updateScores() {
+  document.getElementById("rightScore").textContent = state.right;
+  document.getElementById("wrongScore").textContent = state.wrong;
+  document.getElementById("streakScore").textContent = state.streak;
+}
+
+function renderWriting() {
+  writingGrid.innerHTML = words.map(word => "<article class=\"write-tile\"><div class=\"write-glyph\">" + linkText(word) + "</div><div class=\"write-info\"><div class=\"pinyin\">" + word.pinyin + "</div><div class=\"ru\">" + word.ru + "</div><a class=\"btn\" href=\"" + haohanUrl(word) + "\" target=\"_blank\" rel=\"noreferrer\">Haohan</a></div></article>").join("");
+}
+function renderList() {
+  listBody.innerHTML = words.map(word => `
+    <tr>
+      <td><span class="mini-hanzi">${word.hanzi}</span></td>
+      <td class="pinyin">${word.pinyin}</td>
+      <td>${toneLabel(word.tone)}</td>
+      <td>${word.ru}</td>
+      <td>${detailText(word) || "—"}</td>
+      <td>
+        <button class="btn icon" type="button" data-id="${word.id}" title="Озвучить">▶</button>
+        <a class="btn" href="${haohanUrl(word)}" target="_blank" rel="noreferrer" title="Открыть Haohan">HH</a>
+      </td>
+    </tr>
+  `).join("");
+  listBody.querySelectorAll("[data-id]").forEach(button => {
+    button.addEventListener("click", () => speak(words.find(word => word.id === button.dataset.id)));
+  });
+}
+
+function initModes() {
+  document.querySelectorAll("[data-mode]").forEach(button => {
+    button.addEventListener("click", () => {
+      state.mode = button.dataset.mode;
+      document.querySelectorAll("[data-mode]").forEach(item => item.classList.toggle("active", item === button));
+      renderRound();
+    });
+  });
+}
+
+function initNav() {
+  document.querySelectorAll(".nav a").forEach(link => {
+    link.addEventListener("click", () => {
+      document.querySelectorAll(".nav a").forEach(item => item.classList.remove("active"));
+      link.classList.add("active");
+    });
+  });
+}
+
+searchInput.addEventListener("input", renderCards);
+document.getElementById("newRoundButton").addEventListener("click", renderRound);
+document.getElementById("resetProgressButton").addEventListener("click", () => {
+  state.progress = {};
+  state.study = {};
+  state.studyQueue = [];
+  state.right = 0;
+  state.wrong = 0;
+  state.streak = 0;
+  saveProgress();
+  saveStudy();
+  updateScores();
+  renderCards();
+  renderRound();
+});
+stage.addEventListener("click", event => {
+  if (event.target.id === "speakCurrent") speak(state.current);
+  if (event.target.id === "showAnswer") setFeedback(`${state.current.hanzi} · ${state.current.pinyin} · ${state.current.ru}`, "");
+  if (event.target.id === "nextWord") renderRound();
+  if (event.target.id === "rememberWord") rememberCurrentWord();
+});
+
+updateProgress();
+updateScores();
+renderFilters();
+renderCards();
+renderWriting();
+renderList();
+initModes();
+initNav();
+renderRound();
+</script>
+</body>
+</html>
